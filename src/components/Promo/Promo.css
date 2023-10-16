@@ -1,10 +1,9 @@
 .promo {
   background-color: #073042;
-  padding: 0 70px 75px 70px;
+  padding: 75px 70px 75px 70px;
 }
 
 .promo__container {
-  padding-top: 75px;
   justify-content: space-between;
 }
 

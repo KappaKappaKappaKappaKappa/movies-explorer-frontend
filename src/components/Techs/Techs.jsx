@@ -1,7 +1,6 @@
 function Techs() {
   return (
     <section className="techs">
-      <div className="techs__container">
         <h2 className="techs__title">Технологии</h2>
 
         <div className="techs__info-container">
@@ -20,7 +19,6 @@ function Techs() {
           <li className="stack-container__item">Express.js</li>
           <li className="stack-container__item">mongoDB</li>
         </ul>
-      </div>
     </section>
   );
 }

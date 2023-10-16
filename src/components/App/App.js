@@ -3,6 +3,7 @@ import Promo from "../Promo/Promo";
 import AboutProject from "../AboutProject/AboutProject";
 import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
+import Portfolio from "../Portfolio/Portfolio.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <AboutProject />
       <Techs />
       <AboutMe />
+      <Portfolio />
     </>
   );
 }
