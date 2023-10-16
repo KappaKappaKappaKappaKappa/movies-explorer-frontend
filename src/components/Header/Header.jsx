@@ -22,7 +22,7 @@ function Header({ isLoggedIn }) {
         {!isLoggedIn && (
           <div className="header__links">
             <a href="#" className="header__link-register">
-              Регистация
+              Регистрация
             </a>
             <a href="#" className="header__link-login">
               Войти
