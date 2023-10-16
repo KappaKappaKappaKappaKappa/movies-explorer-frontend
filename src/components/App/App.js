@@ -1,6 +1,7 @@
 import Header from "../Header/Header.jsx";
 import Promo from "../Promo/Promo";
 import AboutProject from "../AboutProject/AboutProject";
+import Techs from "../Techs/Techs";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Header isLoggedIn={isLoggedIn} />
       <Promo />
       <AboutProject />
+      <Techs />
     </>
   );
 }
