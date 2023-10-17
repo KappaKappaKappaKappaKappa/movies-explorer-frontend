@@ -15,30 +15,3 @@
   height: 38px;
   margin: 18px 0;
 }
-
-/* no loggin */
-.header__links {
-  display: flex;
-  gap: 30px;
-  color: #fff;
-  align-items: center;
-}
-
-.header__link-register {
-  text-decoration: none;
-  color: #fff;
-  font-size: 0.75rem;
-}
-
-.header__link-login {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
-  width: 76px;
-  height: 32px;
-  background-color: #3ddc84;
-  border-radius: 3px;
-  font-size: 0.75rem;
-}

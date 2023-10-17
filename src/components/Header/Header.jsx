@@ -1,5 +1,6 @@
 import logo from "../../images/logo.svg";
 import Navigation from "../NavTab/Navigation";
+import NavAuth from "../NavAuth/NavAuth";
 
 function Header({ isLoggedIn }) {
   return (
@@ -7,16 +8,7 @@ function Header({ isLoggedIn }) {
       <div className="header__container">
         <img className="header__logo" src={logo} alt="Логотип" />
         {isLoggedIn && <Navigation />}
-        {!isLoggedIn && (
-          <div className="header__links">
-            <a href="#" className="header__link-register">
-              Регистрация
-            </a>
-            <a href="#" className="header__link-login">
-              Войти
-            </a>
-          </div>
-        )}
+        {!isLoggedIn && <NavAuth />}
       </div>
     </header>
   );
