@@ -1,0 +1,37 @@
+.nav-tab {
+  display: flex;
+  gap: 50px;
+}
+
+.nav-tab__films {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-tab__link {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  align-self: center;
+}
+
+.nav-tab__profile-container {
+    display: flex;
+    gap: 13px;
+}
+
+.nav-tab__profile-link {
+  align-self: center;
+font-size: 0.875rem;
+font-weight: 500;
+line-height: 1rem; /* 114.286% */
+}
+
+.nav-tab__profile-icon {
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  background-color: #0F4157;
+  border-radius: 6px;
+  align-self: center;
+}
