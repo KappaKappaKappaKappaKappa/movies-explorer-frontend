@@ -1,5 +1,5 @@
 import logo from "../../images/logo.svg";
-import Navigation from "../NavTab/Navigation";
+import Navigation from "../Navigation/Navigation";
 import NavAuth from "../NavAuth/NavAuth";
 
 function Header({ isLoggedIn }) {
