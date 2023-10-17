@@ -13,3 +13,4 @@
 @import url("./components/NavAuth/NavAuth.css");
 @import url("./components/Movies/Movies.css");
 @import url("./components/SearchForm/SearchForm.css");
+@import url('./components/FilterCheckbox/FilterCheckbox.css');
