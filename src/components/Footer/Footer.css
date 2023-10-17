@@ -1,0 +1,39 @@
+.footer {
+  padding: 79px 70px 20px;
+  background-color: #202020;
+}
+
+.footer__title {
+  color: #8b8b8b;
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #424242;
+  margin-bottom: 20px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+}
+
+.footer__year {
+}
+
+.footer__links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer__link:hover {
+  opacity: 0.8;
+}

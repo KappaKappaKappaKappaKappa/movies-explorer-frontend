@@ -4,6 +4,7 @@ import AboutProject from "../AboutProject/AboutProject";
 import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio.jsx";
+import Footer from "../Footer/Footer.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Techs />
       <AboutMe />
       <Portfolio />
+      <Footer />
     </>
   );
 }

@@ -48,6 +48,10 @@
   font-weight: 500;
 }
 
+.about-me__link:hover {
+  opacity: 0.8;
+}
+
 .about-me__img {
   width: 270px;
   height: 327px;
