@@ -1,1 +1,5 @@
 .filter-checkbox {}
+
+.filter-checkbox:hover {
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-function FilterCheckbox() {
+function FilterCheckbox({ isSelectShorts }) {
   return (
     <svg
       className="filter-checkbox"
@@ -8,8 +8,18 @@ function FilterCheckbox() {
       viewBox="0 0 36 20"
       fill="none"
     >
-      <rect width="36" height="20" rx="10" fill="#3DDC84" />
-      <circle cx="26" cy="10" r="4" fill="white" />
+      <rect
+        width="36"
+        height="20"
+        rx="10"
+        fill={isSelectShorts ? "#2BE080" : "#343434"}
+      />
+      <circle
+        cx={isSelectShorts ? "26" : "10"}
+        cy="10"
+        r="4"
+        fill={isSelectShorts ? "white" : "#A0A0A0"}
+      />
     </svg>
   );
 }
