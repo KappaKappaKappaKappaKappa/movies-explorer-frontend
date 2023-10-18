@@ -1,4 +1,10 @@
 .cards-list {
     padding         : 70px 70px 80px;
     background-color: #202020;
+    display: flex;
+    gap: 32px 28px;
+    flex-wrap: wrap;
+    max-height: 1372px;
+    overflow: hidden;
+    justify-content: space-between;
 }

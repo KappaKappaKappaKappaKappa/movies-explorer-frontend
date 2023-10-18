@@ -7,7 +7,8 @@ function MoviesCard() {
         <p className="card__duration">0ч 42м</p>
       </div>
       <img src={testImg} alt="тест" className="card__img" />
-      <button className="card__save-btn"></button>
+      <button className="card__save-btn">Сохранить</button>
+      {/* <button className="card__save-btn_active"></button> */}
     </article>
   );
 }
