@@ -5,10 +5,11 @@ import Movies from "../Movies/Movies.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isMoviesSection, setIsMoviesSection] = useState(true);
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} isMoviesSection={isMoviesSection} />
       {/* <Main /> */}
       <Movies />
       <Footer />

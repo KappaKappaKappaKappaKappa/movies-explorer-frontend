@@ -1,6 +1,6 @@
 import profile from "../../images/profile-icon.svg";
 
-function Navigation() {
+function Navigation({ isMoviesSection }) {
   return (
     <nav className="navigation">
       <div className="navigation__films">
@@ -12,7 +12,11 @@ function Navigation() {
         <img
           src={profile}
           alt="Иконка профиля"
-          className="navigation__profile-icon"
+          className={
+            isMoviesSection
+              ? "navigation__profile-icon navigation__profile-icon_dark"
+              : "navigation__profile-icon"
+          }
         />
       </div>
     </nav>
