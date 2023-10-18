@@ -7,9 +7,16 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(true);
   const [isMoviesSection, setIsMoviesSection] = useState(true);
+  const [isMovies, setIsMovies] = useState(true);
+  const [isSavedMovies, setIsSavedMovies] = useState(false);
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} isMoviesSection={isMoviesSection} />
+      <Header
+        isLoggedIn={isLoggedIn}
+        isMoviesSection={isMoviesSection}
+        isMovies={isMovies}
+        isSavedMovies={isSavedMovies}
+      />
       {/* <Main /> */}
       <Movies />
       <Footer />
