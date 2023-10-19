@@ -1,0 +1,58 @@
+.register {
+  padding: 70px 422px;
+  line-height: normal;
+}
+
+.register__logo {
+  margin-bottom: 40px;
+}
+
+.register__title {
+  margin-bottom: 40px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.register__form {
+}
+
+.register__inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 134px;
+}
+
+.register__input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.register__input-title {
+  color: #8b8b8b;
+  font-size: 0.625rem;
+  font-weight: 400;
+}
+
+.register__input {
+  all: unset;
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #424242;
+}
+
+.register__input:focus {
+  border-bottom: 1px solid #4285f4;
+}
+
+.regiter__submit-btn {
+  all: unset;
+  background-color: #4285f4;
+  padding: 13px 126px 15px 124px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 3px;
+  margin: auto;
+}
