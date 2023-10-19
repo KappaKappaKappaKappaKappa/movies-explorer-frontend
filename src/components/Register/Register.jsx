@@ -8,35 +8,46 @@ function Register() {
       <form className="register__form">
         <div className="register__inputs-container">
           <div className="register__input-container">
-            <span className="register__input-title" placeholder="">
+            <p className="register__input-title" placeholder="">
               Имя
-            </span>
+            </p>
             <input
               type="text"
               className="register__input"
               placeholder="Введите имя"
             />
+            <span className="register__error-message"></span>
           </div>
 
           <div className="register__input-container">
-            <span className="register__input-title">E-mail</span>
+            <p className="register__input-title">E-mail</p>
             <input
-              type="text"
+              type="email"
               className="register__input"
               placeholder="Введите почту"
             />
+            <span className="register__error-message"></span>
           </div>
 
           <div className="register__input-container">
-            <span className="register__input-title">Пароль</span>
+            <p className="register__input-title">Пароль</p>
             <input
-              type="text"
-              className="register__input"
+              type="password"
+              className="register__input register__input_error"
               placeholder="Введите пароль"
             />
+            <span className="register__error-message">
+              Что-то пошло не так...
+            </span>
           </div>
         </div>
         <button className="regiter__submit-btn">Зарегистрироваться</button>
+        <p className="register__login-text">
+          Уже зарегистрированы?
+          <a href="" className="register__login-link">
+            Войти
+          </a>
+        </p>
       </form>
     </section>
   );

@@ -8,11 +8,12 @@ import Register from "../Register/Register.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(true);
-  const [isMoviesSection, setIsMoviesSection] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isMoviesSection, setIsMoviesSection] = useState(false);
   const [isMovies, setIsMovies] = useState(false);
   const [isSavedMovies, setIsSavedMovies] = useState(false);
   const [isProfilePage, setIsProfilePage] = useState(true);
+  const [isRegisterPage, setIsRegisterPage] = useState(true)
   return (
     <>
       {/* <Header
@@ -25,8 +26,8 @@ function App() {
       {/* <Movies /> */}
       {/* <SavedMovies isSavedMovies={isSavedMovies} /> */}
       {/* <Profile /> */}
-      {/* {!isProfilePage && <Footer />} */}
       <Register />
+      {(!isProfilePage && !isRegisterPage)  && <Footer />}
     </>
   );
 }

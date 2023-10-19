@@ -1,46 +1,50 @@
 .register {
-  padding: 70px 422px;
+  padding    : 70px 34.53%;
   line-height: normal;
 }
 
 .register__logo {
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .register__title {
   margin-bottom: 40px;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size    : 1.5rem;
+  font-weight  : 500;
 }
 
-.register__form {
-}
+.register__form {}
 
 .register__inputs-container {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  gap: 24px;
-  margin-bottom: 134px;
+  gap           : 6px;
+  margin-bottom : 134px;
 }
 
 .register__input-container {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .register__input-title {
-  color: #8b8b8b;
-  font-size: 0.625rem;
-  font-weight: 400;
+  color        : #8b8b8b;
+  font-size    : 0.625rem;
+  font-weight  : 400;
+  margin-bottom: 5px;
 }
 
 .register__input {
-  all: unset;
-  font-size: 0.875rem;
-  font-weight: 400;
+  all           : unset;
+  font-size     : 0.875rem;
+  font-weight   : 400;
   padding-bottom: 10px;
-  border-bottom: 1px solid #424242;
+  border-bottom : 1px solid #424242;
+  margin-bottom : 6px;
+}
+
+.register__input_error {
+  color: #EE3465;
 }
 
 .register__input:focus {
@@ -48,11 +52,44 @@
 }
 
 .regiter__submit-btn {
-  all: unset;
+  all             : unset;
   background-color: #4285f4;
-  padding: 13px 126px 15px 124px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border-radius: 3px;
-  margin: auto;
+  width           : 100%;
+  text-align      : center;
+  padding         : 13px 0 15px 0;
+  font-size       : 0.875rem;
+  font-weight     : 500;
+  border-radius   : 3px;
+  margin          : auto;
+}
+
+.regiter__submit-btn:hover {
+  opacity: 0.8;
+  cursor : pointer;
+}
+
+.register__error-message {
+  color      : #EE3465;
+  font-size  : 10px;
+  font-weight: 400;
+  height     : 12px;
+}
+
+.register__login-text {
+  display        : flex;
+  justify-content: center;
+  padding-top    : 16px;
+  color          : #8B8B8B;
+  font-size      : 0.875rem;
+  gap            : 6px;
+}
+
+.register__login-link {
+  all  : unset;
+  color: #4285F4;
+}
+
+.register__login-link:hover {
+  opacity: 0.7;
+  cursor : pointer;
 }
