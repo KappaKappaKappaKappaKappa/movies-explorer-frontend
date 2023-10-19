@@ -3,13 +3,15 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Movies from "../Movies/Movies.jsx";
 import SavedMovies from "../SavedMovies/SavedMovies.jsx";
+import Profile from "../Profile/Profile.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(true);
   const [isMoviesSection, setIsMoviesSection] = useState(true);
   const [isMovies, setIsMovies] = useState(false);
-  const [isSavedMovies, setIsSavedMovies] = useState(true);
+  const [isSavedMovies, setIsSavedMovies] = useState(false);
+  const [isProfilePage, setIsProfilePage] = useState(true);
   return (
     <>
       <Header
@@ -20,8 +22,9 @@ function App() {
       />
       {/* <Main /> */}
       {/* <Movies /> */}
-      <SavedMovies isSavedMovies={isSavedMovies} />
-      <Footer />
+      {/* <SavedMovies isSavedMovies={isSavedMovies} /> */}
+      <Profile />
+      {!isProfilePage && <Footer />}
     </>
   );
 }

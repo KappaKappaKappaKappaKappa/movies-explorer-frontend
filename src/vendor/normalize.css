@@ -28,6 +28,7 @@ body {
   margin: auto;
   color: #fff;
   font-family: "Inter", Arial, Helvetica, sans-serif;
+  background-color: #202020;
 }
 
 /**
@@ -53,7 +54,8 @@ h1 {
   margin: 0;
 }
 
-h2, h3 {
+h2,
+h3 {
   margin: 0;
 }
 
