@@ -7,34 +7,78 @@ import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Login from "../Login/Login.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [isMoviesSection, setIsMoviesSection] = useState(false);
-  const [isMovies, setIsMovies] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isMoviesSection, setIsMoviesSection] = useState(true);
+  const [isMovies, setIsMovies] = useState(true);
   const [isSavedMovies, setIsSavedMovies] = useState(false);
-  const [isProfilePage, setIsProfilePage] = useState(false);
-  const [isRegisterPage, setIsRegisterPage] = useState(false);
-  const [isLoginPage, setIsLoginPage] = useState(true);
   return (
-    <>
-      {/* <Header
-        isLoggedIn={isLoggedIn}
-        isMoviesSection={isMoviesSection}
-        isMovies={isMovies}
-        isSavedMovies={isSavedMovies}
-      /> */}
-      {/* <Main /> */}
-      {/* <Movies /> */}
-      {/* <SavedMovies isSavedMovies={isSavedMovies} /> */}
-      {/* <Profile /> */}
-      {/* <Register /> */}
-      {/* <Login /> */}
-      <NotFound />
+    <section className="app">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <React.Fragment>
+              <Header isLoggedIn={isLoggedIn} />
+              <Main />
+              <Footer />
+            </React.Fragment>
+          }
+        />
 
-      {!isProfilePage && !isRegisterPage && !isLoginPage && <Footer />}
-    </>
+        <Route
+          path="/movies"
+          element={
+            <React.Fragment>
+              <Header
+                isMoviesSection={isMoviesSection}
+                isLoggedIn={isLoggedIn}
+                isMovies={isMovies}
+              />
+              <Movies />
+              <Footer />
+            </React.Fragment>
+          }
+        />
+
+        <Route
+          path="/saved-movies"
+          element={
+            <React.Fragment>
+              <Header
+                isMoviesSection={isMoviesSection}
+                isLoggedIn={isLoggedIn}
+                isSavedMovies={isSavedMovies}
+              />
+              <SavedMovies isSavedMovies={isSavedMovies} />
+              <Footer />
+            </React.Fragment>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <React.Fragment>
+              <Header
+                isMoviesSection={isMoviesSection}
+                isLoggedIn={isLoggedIn}
+              />
+              <Profile />
+            </React.Fragment>
+          }
+        />
+
+        <Route path="/signin" element={<Login />} />
+
+        <Route path="/signup" element={<Register />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </section>
   );
 }
 
