@@ -6,6 +6,7 @@ import SavedMovies from "../SavedMovies/SavedMovies.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Login from "../Login/Login.jsx";
+import NotFound from "../NotFound/NotFound.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
       {/* <SavedMovies isSavedMovies={isSavedMovies} /> */}
       {/* <Profile /> */}
       {/* <Register /> */}
-      <Login />
+      {/* <Login /> */}
+      <NotFound />
 
       {!isProfilePage && !isRegisterPage && !isLoginPage && <Footer />}
     </>

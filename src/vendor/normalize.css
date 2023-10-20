@@ -28,6 +28,8 @@ body {
   margin: auto;
   color: #fff;
   font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: normal;
   background-color: #202020;
 }
 
