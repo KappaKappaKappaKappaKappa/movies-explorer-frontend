@@ -1,24 +1,12 @@
 import logo from "../../images/logo.svg";
 
-function Register() {
+function Login() {
   return (
     <section className="login-register">
       <img src={logo} alt="Логотип" className="login-register__logo" />
-      <h2 className="login-register__title">Добро пожаловать!</h2>
+      <h2 className="login-register__title">Рады видеть!</h2>
       <form className="login-register__form">
-        <div className="login-register__inputs-container">
-          <div className="login-register__input-container">
-            <p className="login-register__input-title" placeholder="">
-              Имя
-            </p>
-            <input
-              type="text"
-              className="login-register__input"
-              placeholder="Введите имя"
-            />
-            <span className="login-register__error-message"></span>
-          </div>
-
+        <div className="login-register__inputs-container login-register__inputs-container_login">
           <div className="login-register__input-container">
             <p className="login-register__input-title">E-mail</p>
             <input
@@ -36,16 +24,14 @@ function Register() {
               className="login-register__input login-register__input_error"
               placeholder="Введите пароль"
             />
-            <span className="login-register__error-message">
-              Что-то пошло не так...
-            </span>
+            <span className="login-register__error-message"></span>
           </div>
         </div>
-        <button className="regiter__submit-btn">Зарегистрироваться</button>
+        <button className="regiter__submit-btn">Войти</button>
         <p className="login-register__login-text">
-          Уже зарегистрированы?
+          Ещё не зарегистрированы?
           <a href="" className="login-register__login-link">
-            Войти
+            Регистрация
           </a>
         </p>
       </form>
@@ -53,4 +39,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

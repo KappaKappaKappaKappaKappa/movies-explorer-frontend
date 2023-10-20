@@ -5,6 +5,7 @@ import Movies from "../Movies/Movies.jsx";
 import SavedMovies from "../SavedMovies/SavedMovies.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
+import Login from "../Login/Login.jsx";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
   const [isMoviesSection, setIsMoviesSection] = useState(false);
   const [isMovies, setIsMovies] = useState(false);
   const [isSavedMovies, setIsSavedMovies] = useState(false);
-  const [isProfilePage, setIsProfilePage] = useState(true);
-  const [isRegisterPage, setIsRegisterPage] = useState(true)
+  const [isProfilePage, setIsProfilePage] = useState(false);
+  const [isRegisterPage, setIsRegisterPage] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(true);
   return (
     <>
       {/* <Header
@@ -26,8 +28,10 @@ function App() {
       {/* <Movies /> */}
       {/* <SavedMovies isSavedMovies={isSavedMovies} /> */}
       {/* <Profile /> */}
-      <Register />
-      {(!isProfilePage && !isRegisterPage)  && <Footer />}
+      {/* <Register /> */}
+      <Login />
+
+      {!isProfilePage && !isRegisterPage && !isLoginPage && <Footer />}
     </>
   );
 }

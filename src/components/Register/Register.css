@@ -1,40 +1,40 @@
-.register {
+.login-register {
   padding    : 70px 34.53%;
   line-height: normal;
 }
 
-.register__logo {
+.login-register__logo {
   margin-bottom: 36px;
 }
 
-.register__title {
+.login-register__title {
   margin-bottom: 40px;
   font-size    : 1.5rem;
   font-weight  : 500;
 }
 
-.register__form {}
+.login-register__form {}
 
-.register__inputs-container {
+.login-register__inputs-container {
   display       : flex;
   flex-direction: column;
   gap           : 6px;
   margin-bottom : 134px;
 }
 
-.register__input-container {
+.login-register__input-container {
   display       : flex;
   flex-direction: column;
 }
 
-.register__input-title {
+.login-register__input-title {
   color        : #8b8b8b;
   font-size    : 0.625rem;
   font-weight  : 400;
   margin-bottom: 5px;
 }
 
-.register__input {
+.login-register__input {
   all           : unset;
   font-size     : 0.875rem;
   font-weight   : 400;
@@ -43,11 +43,11 @@
   margin-bottom : 6px;
 }
 
-.register__input_error {
+.login-register__input_error {
   color: #EE3465;
 }
 
-.register__input:focus {
+.login-register__input:focus {
   border-bottom: 1px solid #4285f4;
 }
 
@@ -68,14 +68,14 @@
   cursor : pointer;
 }
 
-.register__error-message {
+.login-register__error-message {
   color      : #EE3465;
   font-size  : 10px;
   font-weight: 400;
   height     : 12px;
 }
 
-.register__login-text {
+.login-register__login-text {
   display        : flex;
   justify-content: center;
   padding-top    : 16px;
@@ -84,12 +84,12 @@
   gap            : 6px;
 }
 
-.register__login-link {
+.login-register__login-link {
   all  : unset;
   color: #4285F4;
 }
 
-.register__login-link:hover {
+.login-register__login-link:hover {
   opacity: 0.7;
   cursor : pointer;
 }
