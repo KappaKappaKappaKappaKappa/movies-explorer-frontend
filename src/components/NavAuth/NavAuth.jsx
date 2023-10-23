@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 function NavAuth() {
   return (
     <nav className="nav-auth">
-      <a href="#" className="nav-auth__link-register">
+      <Link to="/signup" className="nav-auth__link-register">
         Регистрация
-      </a>
-      <a href="#" className="nav-auth__link-login">
+      </Link>
+      <Link to="signin" className="nav-auth__link-login">
         Войти
-      </a>
+      </Link>
     </nav>
   );
 }

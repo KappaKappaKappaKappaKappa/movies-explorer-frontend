@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
 import profile from "../../images/profile-icon.svg";
 
 function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
   return (
     <nav className="navigation">
       <div className="navigation__films">
-        <p
+        <Link
+          to="/movies"
           className={
             isMovies
               ? "navigation__link navigation__link_active"
@@ -12,8 +14,9 @@ function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
           }
         >
           Фильмы
-        </p>
-        <p
+        </Link>
+        <Link
+          to="/saved-movies"
           className={
             isSavedMovies
               ? "navigation__link navigation__link_active"
@@ -21,9 +24,9 @@ function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
           }
         >
           Сохранённые фильмы
-        </p>
+        </Link>
       </div>
-      <div href="#" className="navigation__profile-container">
+      <Link to="/profile" className="navigation__profile-container">
         <p className="navigation__profile-link">Аккаунт</p>
         <img
           src={profile}
@@ -34,7 +37,7 @@ function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
               : "navigation__profile-icon"
           }
         />
-      </div>
+      </Link>
     </nav>
   );
 }

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function NotFound() {
   return (
     <section className="not-found">
@@ -5,9 +7,9 @@ function NotFound() {
         <p className="not-found__code">404</p>
         <p className="not-found__description">Страница не найдена</p>
       </div>
-      <a href="#" className="not-found__link">
+      <Link to="/" className="not-found__link">
         Назад
-      </a>
+      </Link>
     </section>
   );
 }
