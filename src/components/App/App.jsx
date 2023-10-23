@@ -11,10 +11,16 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isMoviesSection, setIsMoviesSection] = useState(true);
   const [isMovies, setIsMovies] = useState(true);
   const [isSavedMovies, setIsSavedMovies] = useState(false);
+
+  const handleClickSideMunuButton = () => {
+    setSideMenuActive(!sideMenuActive);
+  };
+
+  const [sideMenuActive, setSideMenuActive] = useState(false);
   return (
     <section className="app">
       <Routes>
@@ -22,7 +28,11 @@ function App() {
           path="/"
           element={
             <React.Fragment>
-              <Header isLoggedIn={isLoggedIn} />
+              <Header
+                isLoggedIn={isLoggedIn}
+                handleClickSideMunuButton={handleClickSideMunuButton}
+                sideMenuActive={sideMenuActive}
+              />
               <Main />
               <Footer />
             </React.Fragment>
@@ -37,6 +47,8 @@ function App() {
                 isMoviesSection={isMoviesSection}
                 isLoggedIn={isLoggedIn}
                 isMovies={isMovies}
+                handleClickSideMunuButton={handleClickSideMunuButton}
+                sideMenuActive={sideMenuActive}
               />
               <Movies />
               <Footer />
@@ -52,6 +64,8 @@ function App() {
                 isMoviesSection={isMoviesSection}
                 isLoggedIn={isLoggedIn}
                 isSavedMovies={isSavedMovies}
+                handleClickSideMunuButton={handleClickSideMunuButton}
+                sideMenuActive={sideMenuActive}
               />
               <SavedMovies isSavedMovies={isSavedMovies} />
               <Footer />
@@ -66,6 +80,8 @@ function App() {
               <Header
                 isMoviesSection={isMoviesSection}
                 isLoggedIn={isLoggedIn}
+                handleClickSideMunuButton={handleClickSideMunuButton}
+                sideMenuActive={sideMenuActive}
               />
               <Profile />
             </React.Fragment>
