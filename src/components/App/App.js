@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [isMoviesSection, setIsMoviesSection] = useState(true);
   const [isMovies, setIsMovies] = useState(true);
   const [isSavedMovies, setIsSavedMovies] = useState(false);

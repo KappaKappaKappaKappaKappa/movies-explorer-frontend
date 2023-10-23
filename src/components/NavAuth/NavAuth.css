@@ -9,6 +9,7 @@
   text-decoration: none;
   color: #fff;
   font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .nav-auth__link-register:hover {
@@ -22,11 +23,11 @@
   justify-content: center;
   text-decoration: none;
   color: black;
-  width: 76px;
-  height: 32px;
+  padding: 8px 20px;
   background-color: #3ddc84;
   border-radius: 3px;
   font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .nav-auth__link-login:hover {

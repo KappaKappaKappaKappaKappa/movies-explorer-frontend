@@ -1,48 +1,74 @@
 .portfolio {
-    padding         : 0 70px 125px;
-    background-color: #202020;
+  padding: 0 70px 125px;
+  background-color: #202020;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  .portfolio {
+    padding: 0px 50px 90px;
+  }
 }
 
 .portfolio__title {
-    color        : #A0A0A0;
-    margin-bottom: 50px;
-    font-size    : 1.125rem;
-    font-weight  : 400;
-    line-height  : 1.25rem;
+  color: #a0a0a0;
+  margin-bottom: 50px;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  .portfolio__title {
+    margin-bottom: 47px;
+  }
 }
 
 .portfolio-links {
-    display       : flex;
-    flex-direction: column;
-    gap           : 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .portfolio-links__item {
-    display        : flex;
-    justify-content: space-between;
-    text-decoration: none;
-    color          : #fff;
-    padding-bottom : 19px;
-    height         : 50px;
-    font-size      : 1.875rem;
-    font-weight    : 400;
-    letter-spacing : -1.2px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #fff;
+  padding-bottom: 19px;
+  height: 50px;
+  font-size: 1.875rem;
+  font-weight: 400;
+  letter-spacing: -1.2px;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  .portfolio-links__item {
+    font-size: 1.75rem;
+    line-height: 3.125rem;
+    letter-spacing: -1.12px;
+  }
 }
 
 .portfolio-links__item:not(:last-child) {
-    border-bottom: 1px solid #424242;
+  border-bottom: 1px solid #424242;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  .portfolio-links__item:not(:last-child) {
+    border-bottom: 1px solid #e6e6e6;
+  }
 }
 
 .portfolio-links__item:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .portfolio-links__name {
-    line-height: 3.125rem;
+  line-height: 3.125rem;
 }
 
 .portfolio-links__icon {
-    width      : 29px;
-    height     : 60px;
-    line-height: 3.75rem;
+  width: 29px;
+  height: 60px;
+  line-height: 3.75rem;
 }
