@@ -2,7 +2,6 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import React, { useState } from "react";
 
 function SearchForm() {
-  const [isSelectShorts, setIsSelectedShorts] = useState(false);
   return (
     <section className="search">
       <form action="" className="search__form">
@@ -12,7 +11,7 @@ function SearchForm() {
         </div>
       </form>
       <div className="search__shorts-container">
-        <FilterCheckbox isSelectShorts={isSelectShorts} />
+        <FilterCheckbox />
         <p className="search__shorts-title">Короткометражки</p>
       </div>
     </section>
