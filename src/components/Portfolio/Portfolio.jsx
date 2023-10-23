@@ -5,6 +5,8 @@ function Portfolio() {
       <div className="portfolio-links">
         <a
           href="https://github.com/KappaKappaKappaKappaKappa/how-to-learn"
+          target="_blank"
+          rel="noreferrer"
           className="portfolio-links__item"
         >
           <p className="portfolio-links__name">Статичный сайт</p>
@@ -13,6 +15,8 @@ function Portfolio() {
 
         <a
           href="https://github.com/KappaKappaKappaKappaKappa/russian-travel"
+          target="_blank"
+          rel="noreferrer"
           className="portfolio-links__item"
         >
           <p className="portfolio-links__name">Адаптивный сайт</p>
@@ -21,6 +25,8 @@ function Portfolio() {
 
         <a
           href="https://github.com/KappaKappaKappaKappaKappa/react-mesto-api-full-gha"
+          target="_blank"
+          rel="noreferrer"
           className="portfolio-links__item"
         >
           <p className="portfolio-links__name">Одностраничное приложение</p>

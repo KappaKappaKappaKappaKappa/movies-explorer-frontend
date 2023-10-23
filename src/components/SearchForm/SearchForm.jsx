@@ -1,5 +1,4 @@
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import React, { useState } from "react";
 
 function SearchForm() {
   return (
