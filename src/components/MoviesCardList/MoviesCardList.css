@@ -3,12 +3,25 @@
   background-color: #202020;
 }
 
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  .cards-list {
+    padding: 70px 30px 80px;
+  }
+}
+
 .cards-list__container {
   display: flex;
   gap: 32px 28px;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 60px;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  .cards-list__container  {
+    gap: 35px 24px;
+    margin-bottom: 80px;
+  }
 }
 
 .cards-list__btn-container {
