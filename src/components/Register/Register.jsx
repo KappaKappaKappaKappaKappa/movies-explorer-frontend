@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
 function Register() {
@@ -44,9 +45,9 @@ function Register() {
         <button className="regiter__submit-btn">Зарегистрироваться</button>
         <p className="login-register__login-text">
           Уже зарегистрированы?
-          <a href="" className="login-register__login-link">
+          <Link to="/signin" className="login-register__login-link">
             Войти
-          </a>
+          </Link>
         </p>
       </form>
     </section>

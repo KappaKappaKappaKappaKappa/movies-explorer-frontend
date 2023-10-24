@@ -23,12 +23,14 @@ function Header({ isLoggedIn, handleClickSideMenuButton, sideMenuActive }) {
         <Link to="/">
           <img className="header__logo" src={logo} alt="Логотип" />
         </Link>
-        <img
-          src={menuIcon}
-          alt="Иконка меню"
-          className="header__menu-icon"
-          onClick={handleClickSideMenuButton}
-        />
+        {isLoggedIn && (
+          <img
+            src={menuIcon}
+            alt="Иконка меню"
+            className="header__menu-icon"
+            onClick={handleClickSideMenuButton}
+          />
+        )}
         {isLoggedIn && (
           <SideMenu
             sideMenuActive={sideMenuActive}

@@ -34,7 +34,9 @@ function Navigation() {
           src={profile}
           alt="Иконка профиля"
           className={
-            pathname === "/movies" || pathname === "/saved-movies"
+            pathname === "/movies" ||
+            pathname === "/saved-movies" ||
+            pathname === "/profile"
               ? "navigation__profile-icon navigation__profile-icon_dark"
               : "navigation__profile-icon"
           }

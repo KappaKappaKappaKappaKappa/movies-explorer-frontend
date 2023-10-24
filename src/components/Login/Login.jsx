@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
 function Login() {
@@ -30,9 +31,9 @@ function Login() {
         <button className="regiter__submit-btn">Войти</button>
         <p className="login-register__login-text">
           Ещё не зарегистрированы?
-          <a href="" className="login-register__login-link">
+          <Link to='/signup' className="login-register__login-link">
             Регистрация
-          </a>
+          </Link>
         </p>
       </form>
     </section>
