@@ -1,8 +1,8 @@
 .header {
-  width           : 100%;
+  width: 100%;
   background-color: #073042;
-  padding         : 0 70px;
-  box-sizing      : border-box;
+  padding: 0 70px;
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1280px) {
@@ -16,24 +16,30 @@
 }
 
 .header__container {
-  display        : flex;
+  display: flex;
   justify-content: space-between;
-  align-items    : center;
+  align-items: center;
 }
 
 .header__logo {
-  width : 38px;
+  width: 38px;
   height: 38px;
   margin: 18px 0;
 }
 
 .header__menu-icon {
   height: 44px;
-  width : 44px;
+  width: 44px;
+}
+
+@media screen and (min-width: 1280px) {
+  .header__menu-icon {
+    display: none;
+  }
 }
 
 .header__menu-icon:hover {
-  cursor : pointer;
+  cursor: pointer;
   opacity: 0.8;
 }
 

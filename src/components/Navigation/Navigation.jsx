@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import profile from "../../images/profile-icon.svg";
+import { useLocation } from "react-router-dom";
 
-function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
+function Navigation() {
+  const { pathname } = useLocation();
   return (
     <nav className="navigation">
       <div className="navigation__films">
         <Link
           to="/movies"
           className={
-            isMovies
+            pathname === "/movies"
               ? "navigation__link navigation__link_active"
               : "navigation__link"
           }
@@ -18,7 +20,7 @@ function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
         <Link
           to="/saved-movies"
           className={
-            isSavedMovies
+            pathname === "/saved-movies"
               ? "navigation__link navigation__link_active"
               : "navigation__link"
           }
@@ -32,7 +34,7 @@ function Navigation({ isMoviesSection, isMovies, isSavedMovies }) {
           src={profile}
           alt="Иконка профиля"
           className={
-            isMoviesSection
+            pathname === "/movies" || pathname === "/saved-movies"
               ? "navigation__profile-icon navigation__profile-icon_dark"
               : "navigation__profile-icon"
           }

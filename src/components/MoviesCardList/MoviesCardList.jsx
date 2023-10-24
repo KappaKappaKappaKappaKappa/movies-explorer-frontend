@@ -1,6 +1,9 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ isSavedMovies }) {
+import { useLocation } from "react-router-dom";
+
+function MoviesCardList() {
+  const { pathname } = useLocation();
   return (
     <section className="cards-list">
       <div className="cards-list__container">
@@ -17,7 +20,7 @@ function MoviesCardList({ isSavedMovies }) {
         <MoviesCard />
         <MoviesCard /> */}
       </div>
-      {!isSavedMovies && (
+      {pathname === "/movies" && (
         <div className="cards-list__btn-container">
           <button className="cards-list__btn-more">Ещё</button>
         </div>

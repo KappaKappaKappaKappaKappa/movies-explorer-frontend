@@ -9,84 +9,43 @@ import Login from "../Login/Login.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isMoviesSection, setIsMoviesSection] = useState(true);
-  const [isMovies, setIsMovies] = useState(true);
-  const [isSavedMovies, setIsSavedMovies] = useState(false);
+  const [sideMenuActive, setSideMenuActive] = useState(false);
 
-  const handleClickSideMunuButton = () => {
+  const { pathname } = useLocation();
+
+  const isHeaderVisible =
+    pathname === "/" ||
+    pathname === "/movies" ||
+    pathname === "/saved-movies" ||
+    pathname === "/profile";
+
+  const isFooterVisible =
+    pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
+
+  const handleClickSideMenuButton = () => {
     setSideMenuActive(!sideMenuActive);
   };
-
-  const [sideMenuActive, setSideMenuActive] = useState(false);
   return (
     <section className="app">
+      {isHeaderVisible && (
+        <Header
+          isLoggedIn={isLoggedIn}
+          handleClickSideMenuButton={handleClickSideMenuButton}
+          sideMenuActive={sideMenuActive}
+        />
+      )}
       <Routes>
-        <Route
-          path="/"
-          element={
-            <React.Fragment>
-              <Header
-                isLoggedIn={isLoggedIn}
-                handleClickSideMunuButton={handleClickSideMunuButton}
-                sideMenuActive={sideMenuActive}
-              />
-              <Main />
-              <Footer />
-            </React.Fragment>
-          }
-        />
+        <Route path="/" element={<Main />} />
 
-        <Route
-          path="/movies"
-          element={
-            <React.Fragment>
-              <Header
-                isMoviesSection={isMoviesSection}
-                isLoggedIn={isLoggedIn}
-                isMovies={isMovies}
-                handleClickSideMunuButton={handleClickSideMunuButton}
-                sideMenuActive={sideMenuActive}
-              />
-              <Movies />
-              <Footer />
-            </React.Fragment>
-          }
-        />
+        <Route path="/movies" element={<Movies />} />
 
-        <Route
-          path="/saved-movies"
-          element={
-            <React.Fragment>
-              <Header
-                isMoviesSection={isMoviesSection}
-                isLoggedIn={isLoggedIn}
-                isSavedMovies={isSavedMovies}
-                handleClickSideMunuButton={handleClickSideMunuButton}
-                sideMenuActive={sideMenuActive}
-              />
-              <SavedMovies isSavedMovies={isSavedMovies} />
-              <Footer />
-            </React.Fragment>
-          }
-        />
+        <Route path="/saved-movies" element={<SavedMovies />} />
 
-        <Route
-          path="/profile"
-          element={
-            <React.Fragment>
-              <Header
-                isMoviesSection={isMoviesSection}
-                isLoggedIn={isLoggedIn}
-                handleClickSideMunuButton={handleClickSideMunuButton}
-                sideMenuActive={sideMenuActive}
-              />
-              <Profile />
-            </React.Fragment>
-          }
-        />
+        <Route path="/profile" element={<Profile />} />
 
         <Route path="/signin" element={<Login />} />
 
@@ -94,6 +53,8 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+
+      {isFooterVisible && <Footer />}
     </section>
   );
 }
