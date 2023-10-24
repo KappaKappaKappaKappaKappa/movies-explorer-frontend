@@ -30,6 +30,7 @@
 .header__menu-icon {
   height: 44px;
   width: 44px;
+  padding-bottom: 6px;
 }
 
 @media screen and (min-width: 1280px) {
