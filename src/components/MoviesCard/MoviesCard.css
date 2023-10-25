@@ -78,3 +78,17 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
+.card__delete-btn {
+  all: unset;
+  width: 100px;
+  height: 29px;
+  background-image: url("../../images/delete-saved-card-btn.svg");
+  display: block;
+  margin: 0 auto;
+}
+
+.card__delete-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
