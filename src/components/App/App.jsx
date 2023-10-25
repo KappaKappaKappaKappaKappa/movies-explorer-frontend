@@ -12,7 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
   const { pathname } = useLocation();

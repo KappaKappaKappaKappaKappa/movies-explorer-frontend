@@ -3,9 +3,18 @@
   padding: 100px 70px;
 }
 
-@media screen and (min-width: 767px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .techs {
     padding: 90px 50px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .techs {
+    padding: 70px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -18,9 +27,19 @@
   margin-bottom: 90px;
 }
 
-@media screen and (min-width: 767px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .techs__title {
     margin-bottom: 80px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .techs__title {
+    font-size: 1.125rem;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+    width: 100%;
   }
 }
 
@@ -32,10 +51,17 @@
   margin-bottom: 100px;
 }
 
-@media screen and (min-width: 767px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .techs__info-container {
     gap: 22px;
     margin-bottom: 83px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .techs__info-container {
+    gap: 13px;
+    margin-bottom: 50px;
   }
 }
 
@@ -48,6 +74,14 @@
   line-height: 3.625rem;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .techs__info-title {
+    width: 100%;
+    font-size: 1.875rem;
+    letter-spacing: -1.2px;
+  }
+}
+
 .techs__info-subtitle {
   width: 40.35%;
   text-align: center;
@@ -56,7 +90,7 @@
   font-size: 0.875rem;
 }
 
-@media screen and (min-width: 767px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .techs__info-subtitle {
     width: 68.8%;
     font-size: 0.75rem;
@@ -65,11 +99,29 @@
   }
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .techs__info-subtitle {
+    width: 100%;
+    font-size: 0.6875rem;
+    line-height: 1rem; /* 145.455% */
+    letter-spacing: -0.44px;
+  }
+}
+
 .stack-container {
   all: unset;
   display: flex;
   gap: 10px;
   justify-content: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .stack-container {
+    width: 63%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 9px;
+  }
 }
 
 .stack-container__item {
@@ -83,7 +135,15 @@
   letter-spacing: -0.56px;
 }
 
-@media screen and (min-width: 767px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .stack-container__item {
+    font-size: 0.75rem;
+    width: 84px;
+    letter-spacing: -0.48px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
   .stack-container__item {
     font-size: 0.75rem;
     width: 84px;

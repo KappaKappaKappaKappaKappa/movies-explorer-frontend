@@ -5,9 +5,15 @@
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 767px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .header {
     padding: 0px 30px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .header {
+    padding: 0px 14px;
   }
 }
 
@@ -27,6 +33,12 @@
   margin: 18px 0;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .header__logo{
+    margin: 16px 0;
+  }
+}
+
 .header__menu-icon {
   height: 44px;
   width: 44px;
@@ -36,6 +48,14 @@
 @media screen and (min-width: 1280px) {
   .header__menu-icon {
     display: none;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px){
+  .header__menu-icon {
+    width: 37px;
+    height: 43px;
+    padding-bottom: 4px;
   }
 }
 
