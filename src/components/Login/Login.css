@@ -9,14 +9,36 @@
   }
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .login-register {
+    padding: 56px 30px 30px;
+  }
+}
+
 .login-register__logo {
   margin-bottom: 36px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .login-register__logo {
+    display: block;
+    margin: 0 auto 50px;
+    width: 38px;
+    height: 38px;
+  }
 }
 
 .login-register__title {
   margin-bottom: 40px;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .login-register__title {
+    margin-bottom: 80px;
+    text-align: center;
+  }
 }
 
 .login-register__form {
@@ -29,8 +51,20 @@
   margin-bottom: 134px;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .login-register__inputs-container {
+    margin-bottom: 222px;
+  }
+}
+
 .login-register__inputs-container_login {
   margin-bottom: 203px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .login-register__inputs-container_login {
+    margin-bottom: 291px;
+  }
 }
 
 .login-register__input-container {
@@ -79,6 +113,13 @@
   cursor: pointer;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .regiter__submit-btn {
+    font-size: 0.75rem;
+    padding: 15px 0 15px 0;
+  }
+}
+
 .login-register__error-message {
   color: #ee3465;
   font-size: 10px;
@@ -93,6 +134,14 @@
   color: #8b8b8b;
   font-size: 0.875rem;
   gap: 6px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .login-register__login-text {
+    font-size: 0.75rem;
+    padding-top: 14px;
+    gap: 7px;
+  }
 }
 
 .login-register__login-link {

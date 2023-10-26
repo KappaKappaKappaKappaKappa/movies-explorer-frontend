@@ -1,5 +1,5 @@
 .profile {
-  padding         : 74px 435px;
+  padding: 74px 435px;
   background-color: #202020;
 }
 
@@ -9,11 +9,17 @@
   }
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile {
+    padding: 70px 30px 40px;
+  }
+}
+
 .profile__title {
-  text-align   : center;
+  text-align: center;
   margin-bottom: 123px;
-  font-size    : 1.5rem;
-  font-weight  : 500;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1280px) {
@@ -22,33 +28,40 @@
   }
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile__title {
+    margin-bottom: 80px;
+  }
+}
+
 .form {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-  font-size     : 0.6875rem;
-  font-weight   : 500;
+  font-size: 0.6875rem;
+  font-weight: 500;
 }
 
 .form__container-name {
-  display        : flex;
+  display: flex;
   justify-content: space-between;
-  padding-bottom : 16px;
-  border-bottom  : 1px solid #424242;
-  margin-bottom  : 17px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #424242;
+  margin-bottom: 17px;
 }
 
-.form__input-title {}
+.form__input-title {
+}
 
 .form__input {
-  all        : unset;
-  text-align : right;
+  all: unset;
+  text-align: right;
   font-weight: 400;
 }
 
 .form__container-email {
-  display        : flex;
+  display: flex;
   justify-content: space-between;
-  margin-bottom  : 185px;
+  margin-bottom: 185px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1280px) {
@@ -57,18 +70,30 @@
   }
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .form__container-email  {
+    margin-bottom: 345px;
+  }
+}
+
 .profile__btns-container {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-  text-align    : center;
-  gap           : 16px;
-  font-size     : 0.8125rem;
-  font-weight   : 400;
+  text-align: center;
+  gap: 16px;
+  font-size: 0.8125rem;
+  font-weight: 400;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1280px) {
   .profile__btns-container {
     gap: 16px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile__btns-container {
+    font-size: 0.75rem;
   }
 }
 
@@ -78,39 +103,39 @@
 
 .profile__edit-btn:hover {
   opacity: 0.7;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .profile__logout-btn {
-  all        : unset;
-  color      : #ee3465;
+  all: unset;
+  color: #ee3465;
   font-weight: 500;
 }
 
 .profile__logout-btn:hover {
   opacity: 0.7;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .form__error-message {
   margin-bottom: 20px;
-  height       : 14px;
-  color        : #FF004C;
-  text-align   : center;
-  font-size    : 0.6875rem;
+  height: 14px;
+  color: #ff004c;
+  text-align: center;
+  font-size: 0.6875rem;
 }
 
 .form__submit-btn {
-  all             : unset;
-  height          : 45px;
-  background-color: #3456F3;
-  border-radius   : 3px;
-  text-align      : center;
-  font-size       : 0.875rem;
-  font-weight     : 500;
+  all: unset;
+  height: 45px;
+  background-color: #3456f3;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .form__submit-btn:hover {
   opacity: 0.8;
-  cursor : pointer;
+  cursor: pointer;
 }
