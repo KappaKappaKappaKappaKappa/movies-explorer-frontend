@@ -7,7 +7,7 @@
   background-color: #202020;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .profile {
     padding: 0px 179px;
   }
@@ -27,7 +27,7 @@
   font-weight: 500;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .profile__title {
     margin-bottom: 96px;
   }
@@ -69,7 +69,7 @@
   margin-bottom: 185px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .form__container-email {
     margin-bottom: 177px;
   }
@@ -90,7 +90,7 @@
   font-weight: 400;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .profile__btns-container {
     gap: 16px;
   }

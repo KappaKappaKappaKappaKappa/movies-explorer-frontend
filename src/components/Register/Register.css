@@ -7,7 +7,7 @@
   line-height: normal;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .login-register {
     padding: 0 186px;
   }

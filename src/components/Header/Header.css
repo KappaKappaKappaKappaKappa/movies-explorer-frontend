@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .header {
     padding: 0px 30px;
   }
@@ -45,7 +45,7 @@
   padding-bottom: 6px;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1279px) {
   .header__menu-icon {
     display: none;
   }
