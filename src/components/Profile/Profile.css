@@ -1,22 +1,17 @@
 .profile {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 89vh;
-  padding: 0 435px;
+  padding: 74px 435px;
   background-color: #202020;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .profile {
-    padding: 0px 179px;
+    padding: 232px 179px;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile {
-    height: 94vh;
-    padding: 0 30px;
+    padding: 70px 30px 40px;
   }
 }
 
@@ -27,7 +22,7 @@
   font-weight: 500;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .profile__title {
     margin-bottom: 96px;
   }
@@ -69,7 +64,7 @@
   margin-bottom: 185px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .form__container-email {
     margin-bottom: 177px;
   }
@@ -90,7 +85,7 @@
   font-weight: 400;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .profile__btns-container {
     gap: 16px;
   }

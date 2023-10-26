@@ -1,28 +1,22 @@
 .login-register {
-  padding: 0 442px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
+  padding: 70px 34.53%;
   line-height: normal;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .login-register {
-    padding: 0 186px;
+    padding: 232px 186px;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .login-register {
-    padding: 0 30px;
+    padding: 56px 30px 30px;
   }
 }
 
 .login-register__logo {
-  margin-bottom: 40px;
-  width: 38px;
-  height: 38px;
+  margin-bottom: 36px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
