@@ -11,9 +11,10 @@ function Login() {
       <form className="login-register__form">
         <div className="login-register__inputs-container login-register__inputs-container_login">
           <div className="login-register__input-container">
-            <p className="login-register__input-title">E-mail</p>
+            <label htmlFor="email" className="login-register__input-title">E-mail</label>
             <input
               type="email"
+              id="email"
               className="login-register__input"
               placeholder="Введите почту"
             />
@@ -21,9 +22,10 @@ function Login() {
           </div>
 
           <div className="login-register__input-container">
-            <p className="login-register__input-title">Пароль</p>
+            <label htmlFor="password" className="login-register__input-title">Пароль</label>
             <input
               type="password"
+              id="password"
               className="login-register__input login-register__input_error"
               placeholder="Введите пароль"
             />

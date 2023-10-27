@@ -13,18 +13,20 @@ function Profile() {
       <h1 className="profile__title">Привет, Виталий!</h1>
       <form className="form">
         <div className="form__container-name">
-          <p className="form__input-title">Имя</p>
+          <label htmlFor="name" className="form__input-title">Имя</label>
           <input
             className="form__input"
             placeholder="Виталий"
+            id="name"
             disabled={!isRedactorMode}
           />
         </div>
         <div className="form__container-email">
-          <p className="form__input-title">E-mail</p>
+          <label htmlFor="email" className="form__input-title">E-mail</label>
           <input
             className="form__input"
             placeholder="pochta@yandex.ru"
+            id="email"
             disabled={!isRedactorMode}
           />
         </div>

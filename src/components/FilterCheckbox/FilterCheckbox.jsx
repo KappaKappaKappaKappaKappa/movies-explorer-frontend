@@ -1,9 +1,9 @@
 function FilterCheckbox() {
   return (
-    <div class="checkbox">
-      <div class="checkbox__item">
+    <div className="checkbox">
+      <div className="checkbox__item">
         <input type="checkbox" id="toggle" name="check" />
-        <label for="toggle"></label>
+        <label htmlFor="toggle"></label>
       </div>
     </div>
   );

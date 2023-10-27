@@ -11,9 +11,12 @@ function Register() {
       <form className="login-register__form">
         <div className="login-register__inputs-container">
           <div className="login-register__input-container">
-            <p className="login-register__input-title">Имя</p>
+            <label htmlFor="name" className="login-register__input-title">
+              Имя
+            </label>
             <input
               type="text"
+              id="name"
               className="login-register__input"
               placeholder="Введите имя"
             />
@@ -21,9 +24,10 @@ function Register() {
           </div>
 
           <div className="login-register__input-container">
-            <p className="login-register__input-title">E-mail</p>
+            <label htmlFor="email" className="login-register__input-title">E-mail</label>
             <input
               type="email"
+              id="email"
               className="login-register__input"
               placeholder="Введите почту"
             />
@@ -31,9 +35,10 @@ function Register() {
           </div>
 
           <div className="login-register__input-container">
-            <p className="login-register__input-title">Пароль</p>
+            <label htmlFor='password' className="login-register__input-title">Пароль</label>
             <input
               type="password"
+              id="password"
               className="login-register__input login-register__input_error"
               placeholder="Введите пароль"
             />
