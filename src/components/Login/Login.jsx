@@ -3,7 +3,7 @@ import logo from "../../images/logo.svg";
 
 function Login() {
   return (
-    <section className="login-register">
+    <main className="login-register">
       <Link to="/">
         <img src={logo} alt="Логотип" className="login-register__logo" />
       </Link>
@@ -38,7 +38,7 @@ function Login() {
           </Link>
         </p>
       </form>
-    </section>
+    </main>
   );
 }
 

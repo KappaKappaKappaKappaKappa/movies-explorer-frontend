@@ -60,6 +60,7 @@
 }
 
 .footer__links {
+  all: unset;
   display: flex;
   gap: 20px;
 }
@@ -70,6 +71,10 @@
     align-items: center;
     gap: 12px;
   }
+}
+
+.footer__links li{
+  all: unset;
 }
 
 .footer__link {

@@ -4,11 +4,11 @@ import Preloader from "../Preloader/Preloader";
 
 function Movies() {
   return (
-    <>
+    <main className="movies">
       <SearchForm />
       {/* <Preloader /> */}
       <MoviesCardList />
-    </>
+    </main>
   );
 }
 
