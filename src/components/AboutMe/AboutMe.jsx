@@ -18,6 +18,8 @@ function AboutMe() {
           <a
             href="https://github.com/KappaKappaKappaKappaKappa"
             className="about-me__link"
+            target="_blank"
+            rel="noreferrer"
           >
             Github
           </a>

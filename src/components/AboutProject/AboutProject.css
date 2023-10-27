@@ -9,7 +9,7 @@
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 767px) {
   .about-project {
     padding: 70px 18px 69px;
   }
@@ -27,7 +27,7 @@
   letter-spacing: -0.88px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 767px) {
   .about-project__title {
     font-size: 1.125rem;
     letter-spacing: -0.72px;

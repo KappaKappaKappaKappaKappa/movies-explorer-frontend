@@ -4,7 +4,9 @@ import logo from "../../images/logo.svg";
 function Login() {
   return (
     <section className="login-register">
-      <img src={logo} alt="Логотип" className="login-register__logo" />
+      <Link to="/">
+        <img src={logo} alt="Логотип" className="login-register__logo" />
+      </Link>
       <h2 className="login-register__title">Рады видеть!</h2>
       <form className="login-register__form">
         <div className="login-register__inputs-container login-register__inputs-container_login">
@@ -31,7 +33,7 @@ function Login() {
         <button className="regiter__submit-btn">Войти</button>
         <p className="login-register__login-text">
           Ещё не зарегистрированы?
-          <Link to='/signup' className="login-register__login-link">
+          <Link to="/signup" className="login-register__login-link">
             Регистрация
           </Link>
         </p>

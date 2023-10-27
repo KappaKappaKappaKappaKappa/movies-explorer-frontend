@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Profile() {
   const [isRedactorMode, setIsRedactorMode] = useState(false);
@@ -40,7 +41,9 @@ function Profile() {
           >
             Редактировать
           </button>
-          <button className="profile__logout-btn">Выйти из аккаунта</button>
+          <Link to="/signin" className="profile__logout-btn">
+            Выйти из аккаунта
+          </Link>
         </div>
       )}
     </section>
