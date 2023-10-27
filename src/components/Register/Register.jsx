@@ -7,13 +7,11 @@ function Register() {
       <Link to="/">
         <img src={logo} alt="Логотип" className="login-register__logo" />
       </Link>
-      <h2 className="login-register__title">Добро пожаловать!</h2>
+      <h1 className="login-register__title">Добро пожаловать!</h1>
       <form className="login-register__form">
         <div className="login-register__inputs-container">
           <div className="login-register__input-container">
-            <p className="login-register__input-title" placeholder="">
-              Имя
-            </p>
+            <p className="login-register__input-title">Имя</p>
             <input
               type="text"
               className="login-register__input"
@@ -44,7 +42,9 @@ function Register() {
             </span>
           </div>
         </div>
-        <button className="login-register__submit-btn">Зарегистрироваться</button>
+        <button className="login-register__submit-btn">
+          Зарегистрироваться
+        </button>
         <p className="login-register__login-text">
           Уже зарегистрированы?
           <Link to="/signin" className="login-register__login-link">

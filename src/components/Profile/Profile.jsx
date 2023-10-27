@@ -10,7 +10,7 @@ function Profile() {
 
   return (
     <main className="profile">
-      <h2 className="profile__title">Привет, Виталий!</h2>
+      <h1 className="profile__title">Привет, Виталий!</h1>
       <form className="form">
         <div className="form__container-name">
           <p className="form__input-title">Имя</p>

@@ -7,7 +7,7 @@ function Login() {
       <Link to="/">
         <img src={logo} alt="Логотип" className="login-register__logo" />
       </Link>
-      <h2 className="login-register__title">Рады видеть!</h2>
+      <h1 className="login-register__title">Рады видеть!</h1>
       <form className="login-register__form">
         <div className="login-register__inputs-container login-register__inputs-container_login">
           <div className="login-register__input-container">
