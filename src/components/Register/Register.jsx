@@ -44,7 +44,7 @@ function Register() {
             </span>
           </div>
         </div>
-        <button className="regiter__submit-btn">Зарегистрироваться</button>
+        <button className="login-register__submit-btn">Зарегистрироваться</button>
         <p className="login-register__login-text">
           Уже зарегистрированы?
           <Link to="/signin" className="login-register__login-link">

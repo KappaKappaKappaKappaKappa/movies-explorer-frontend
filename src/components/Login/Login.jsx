@@ -30,7 +30,7 @@ function Login() {
             <span className="login-register__error-message"></span>
           </div>
         </div>
-        <button className="regiter__submit-btn">Войти</button>
+        <button className="login-register__submit-btn">Войти</button>
         <p className="login-register__login-text">
           Ещё не зарегистрированы?
           <Link to="/signup" className="login-register__login-link">

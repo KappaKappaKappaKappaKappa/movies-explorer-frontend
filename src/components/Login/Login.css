@@ -101,7 +101,7 @@
   border-bottom: 1px solid #4285f4;
 }
 
-.regiter__submit-btn {
+.login-register__submit-btn {
   all: unset;
   background-color: #4285f4;
   width: 100%;
@@ -113,13 +113,13 @@
   margin: auto;
 }
 
-.regiter__submit-btn:hover {
+.login-register__submit-btn:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .regiter__submit-btn {
+  .login-register__submit-btn {
     font-size: 0.75rem;
     padding: 15px 0 15px 0;
   }
