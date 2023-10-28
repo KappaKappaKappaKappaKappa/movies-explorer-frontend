@@ -53,6 +53,7 @@
   .about-project__info-container {
     flex-direction: column;
     gap: 56px;
+    align-items: center;
     margin-bottom: 61px;
   }
 }
