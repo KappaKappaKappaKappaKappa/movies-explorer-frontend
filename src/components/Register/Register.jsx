@@ -5,7 +5,7 @@ function Register() {
   return (
     <main className="login-register">
       <Link to="/">
-        <img src={logo} alt="Логотип" className="login-register__logo" />
+        <img src={logo} alt="Логотип сайта" className="login-register__logo" />
       </Link>
       <h1 className="login-register__title">Добро пожаловать!</h1>
       <form className="login-register__form">

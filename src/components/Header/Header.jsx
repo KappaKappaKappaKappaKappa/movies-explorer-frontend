@@ -21,7 +21,7 @@ function Header({ isLoggedIn, handleClickSideMenuButton, sideMenuActive }) {
     >
       <div className="header__container">
         <Link to="/">
-          <img className="header__logo" src={logo} alt="Логотип" />
+          <img className="header__logo" src={logo} alt="Логотип сайта" />
         </Link>
         {isLoggedIn && (
           <img

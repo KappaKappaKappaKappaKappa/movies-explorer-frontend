@@ -11,7 +11,7 @@ function SideMenu({ sideMenuActive, handleClickCloseBtnMenu }) {
       <div className="menu__container">
         <img
           src={sideMenuCloseBtn}
-          alt="Кнопка закрытия меню"
+          alt="Кнопка закрытия бокового меню"
           className="menu__close-btn"
           onClick={handleClickCloseBtnMenu}
         />

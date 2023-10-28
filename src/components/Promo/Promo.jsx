@@ -18,7 +18,7 @@ function Promo() {
         </div>
         <img
           src={landingLogo}
-          alt="Логотип лендинга"
+          alt="Картинка планеты"
           className="promo__image"
         />
       </div>

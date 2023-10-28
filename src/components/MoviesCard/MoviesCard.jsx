@@ -17,7 +17,7 @@ function MoviesCard() {
         <h2 className="card__title">В погоне за Бенкси</h2>
         <p className="card__duration">0ч 42м</p>
       </div>
-      <img src={testImg} alt="тест" className="card__img" />
+      <img src={testImg} alt="Картинка карточки" className="card__img" />
       {pathname === "/movies" && !isSavedCard && (
         <button className="card__save-btn" onClick={handleClickSaveBtnCard}>
           Сохранить
