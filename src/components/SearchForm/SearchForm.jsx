@@ -11,6 +11,7 @@ function SearchForm() {
             placeholder="Фильм"
             id="movies-search"
             aria-label="Поиск по фильмам"
+            required
           />
           <button className="search__submit-btn" type="submit">
             Поиск

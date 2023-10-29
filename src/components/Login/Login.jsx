@@ -17,6 +17,7 @@ function Login() {
               id="email"
               className="login-register__input"
               placeholder="Введите почту"
+              required
             />
             <span className="login-register__error-message"></span>
           </div>
@@ -28,11 +29,14 @@ function Login() {
               id="password"
               className="login-register__input login-register__input_error"
               placeholder="Введите пароль"
+              required
+              minLength={8}
+              maxLength={20}
             />
             <span className="login-register__error-message"></span>
           </div>
         </div>
-        <button className="login-register__submit-btn">Войти</button>
+        <button className="login-register__submit-btn" type="submit">Войти</button>
         <p className="login-register__login-text">
           Ещё не зарегистрированы?
           <Link to="/signup" className="login-register__login-link">
