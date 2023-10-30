@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm() {
+  const [errorMessage, setErrorMessage] = useState("sdafsd");
   return (
     <section className="search">
       <form action="" className="search__form">
@@ -17,6 +19,7 @@ function SearchForm() {
             Поиск
           </button>
         </div>
+        <span className="search__input-error">{errorMessage}</span>
       </form>
       <div className="search__shorts-container">
         <FilterCheckbox />

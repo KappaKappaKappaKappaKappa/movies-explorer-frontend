@@ -10,9 +10,10 @@ import NotFound from "../NotFound/NotFound.jsx";
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
   const { pathname } = useLocation();
@@ -41,11 +42,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
 
-        <Route path="/movies" element={<Movies />} />
+        <Route
+          path="/movies"
+          element={<ProtectedRoute element={<Movies />} />}
+        />
 
-        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route
+          path="/saved-movies"
+          element={<ProtectedRoute element={<SavedMovies />} />}
+        />
 
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute element={<Profile />} />}
+        />
 
         <Route path="/signin" element={<Login />} />
 
