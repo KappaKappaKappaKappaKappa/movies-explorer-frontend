@@ -1,0 +1,201 @@
+.about-project {
+  background-color: #202020;
+  padding: 110px 70px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project {
+    padding: 70px 18px 69px;
+  }
+}
+
+.about-project__container {
+}
+
+.about-project__title {
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 23px;
+  font-size: 1.375rem;
+  font-weight: 400;
+  margin-bottom: 70px;
+  letter-spacing: -0.88px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__title {
+    font-size: 1.125rem;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+    margin-bottom: 61px;
+  }
+}
+
+.about-project__info-container {
+  display: flex;
+  margin-bottom: 110px;
+  gap: 40px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project__info-container {
+    margin-bottom: 93px;
+    gap: 37px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__info-container {
+    flex-direction: column;
+    gap: 56px;
+    align-items: center;
+    margin-bottom: 61px;
+  }
+}
+
+.about-project__info {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project__info {
+    gap: 22px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__info {
+    gap: 17px;
+  }
+}
+
+.about-project__info-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__info-title {
+    font-size: 1.125rem;
+    letter-spacing: -0.72px;
+  }
+}
+
+.about-project__info-subtitle {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project__info-subtitle {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__info-subtitle {
+    font-size: 0.6875rem;
+    line-height: 1rem; /* 145.455% */
+  }
+}
+
+.about-project__progress {
+  display: flex;
+}
+
+.about-project__timeline-container-frontend {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__timeline-container-frontend {
+    gap: 10px;
+    font-size: 0.6875rem;
+  }
+}
+
+.about-project__timeline-title-frontend {
+  text-align: center;
+  background-color: #303030;
+  padding: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project__timeline-title-frontend {
+    padding: 9px 10px;
+  }
+}
+
+.about-project__timeline-subtitle-frontend {
+  text-align: center;
+  color: #8b8b8b;
+  line-height: 1.0625rem;
+  font-weight: 500;
+}
+
+.about-project__timeline-container-backend {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project__timeline-container-backend {
+    width: 21.3%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__timeline-container-backend {
+    width: 43.48%;
+    gap: 10px;
+    font-size: 0.6875rem;
+  }
+}
+
+.about-project__timeline-title-backend {
+  text-align: center;
+  background-color: #3ddc84;
+  color: black;
+  padding: 10px 14px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-project__timeline-title-backend {
+    padding: 9px 10px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__timeline-title-backend {
+  }
+}
+
+.about-project__timeline-subtitle-backend {
+  text-align: center;
+  color: #8b8b8b;
+  line-height: 1.0625rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-project__timeline-subtitle-backend {
+    font-weight: 400;
+  }
+}

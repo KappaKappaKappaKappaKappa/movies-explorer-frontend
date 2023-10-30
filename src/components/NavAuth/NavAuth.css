@@ -1,0 +1,56 @@
+.nav-auth {
+  display: flex;
+  gap: 30px;
+  color: #fff;
+  align-items: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .nav-auth  {
+    gap: 14px;
+  }
+}
+
+.nav-auth__link-register {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .nav-auth__link-register {
+    font-size: 0.625rem;
+  }
+}
+
+.nav-auth__link-register:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.nav-auth__link-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  padding: 8px 20px;
+  background-color: #3ddc84;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .nav-auth__link-login {
+    font-size: 0.625rem;
+    padding: 5px 12px;
+  }
+}
+
+.nav-auth__link-login:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

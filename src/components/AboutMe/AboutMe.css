@@ -1,0 +1,165 @@
+.about-me {
+  background-color: #202020;
+  padding: 110px 70px 98px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-me {
+    padding: 90px 50px 90px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me {
+    padding: 70px 14px;
+  }
+}
+
+.about-me__container {
+  display: flex;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-me__container {
+    gap: 49px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+.about-me__title {
+  padding-bottom: 23px;
+  border-bottom: 1px solid #dadada;
+  font-size: 1.375rem;
+  letter-spacing: -0.88px;
+  margin-bottom: 66px;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__title {
+    font-size: 1.125rem;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+  }
+}
+
+.about-me__info-container {
+}
+
+.about-me__name {
+  font-size: 3.125rem;
+  font-weight: 400;
+  line-height: 3.625rem;
+  letter-spacing: -2px;
+  margin-bottom: 18px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-me__name {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    letter-spacing: -1.6px;
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__name {
+    font-size: 1.875rem;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    margin-bottom: 20px;
+  }
+}
+
+.about-me__profession {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  margin-bottom: 26px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-me__profession {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__profession {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    margin-bottom: 20px;
+  }
+}
+
+.about-me__description {
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  width: 68.97%;
+  margin-bottom: 99px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-me__description {
+    width: 100%;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    margin-bottom: 86px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__description {
+    width: 100%;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    margin-bottom: 38px;
+  }
+}
+
+.about-me__link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__link {
+    font-size: 0.875rem;
+  }
+}
+
+.about-me__link:hover {
+  opacity: 0.8;
+}
+
+.about-me__img {
+  width: 270px;
+  height: 327px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-me__img {
+    width: 255px;
+    height: 309px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .about-me__img {
+    width: 292px;
+    height: 352px;
+  }
+}
