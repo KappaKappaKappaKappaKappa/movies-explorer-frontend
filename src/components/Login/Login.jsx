@@ -37,13 +37,28 @@ function Login() {
     setIsFormValid(isEmail(emailInputValue) && e.target.value.length >= 8);
   };
 
+  const resetForm = () => {
+    setIsFormValid(false);
+    setEmailInputValue("");
+    setPasswordInputValue("");
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    resetForm();
+  };
+
   return (
     <main className="login-register">
       <Link to="/">
         <img src={logo} alt="Логотип сайта" className="login-register__logo" />
       </Link>
       <h1 className="login-register__title">Рады видеть!</h1>
-      <form className="login-register__form" noValidate>
+      <form
+        className="login-register__form"
+        noValidate
+        onSubmit={handleSubmitForm}
+      >
         <div className="login-register__inputs-container login-register__inputs-container_login">
           <div className="login-register__input-container">
             <label htmlFor="email" className="login-register__input-title">
