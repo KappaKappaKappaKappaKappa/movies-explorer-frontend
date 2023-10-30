@@ -93,12 +93,13 @@
   margin-bottom: 6px;
 }
 
-.login-register__input_error {
-  color: #ee3465;
-}
-
 .login-register__input:focus {
   border-bottom: 1px solid #4285f4;
+}
+
+.login-register__input_error {
+  color: #ee3465;
+  border-bottom: 1px solid #ee3465;
 }
 
 .login-register__submit-btn {
@@ -123,6 +124,16 @@
     font-size: 0.75rem;
     padding: 15px 0 15px 0;
   }
+}
+
+.login-register__submit-btn_inactive {
+  background-color: #424242;
+  color: #8b8b8b;
+}
+
+.login-register__submit-btn_inactive:hover {
+  opacity: 1;
+  cursor: unset;
 }
 
 .login-register__error-message {
