@@ -19,7 +19,7 @@ function Profile() {
           <input
             className="form__input"
             placeholder="Виталий"
-            id="name"
+            name="name"
             disabled={!isRedactorMode}
             minLength={2}
             maxLength={10}
@@ -32,7 +32,7 @@ function Profile() {
           <input
             className="form__input"
             placeholder="pochta@yandex.ru"
-            id="email"
+            name="email"
             disabled={!isRedactorMode}
           />
         </div>

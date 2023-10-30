@@ -11,7 +11,7 @@ function SearchForm() {
             type="text"
             className="search__input"
             placeholder="Фильм"
-            id="movies-search"
+            name="movies-search"
             aria-label="Поиск по фильмам"
             required
           />

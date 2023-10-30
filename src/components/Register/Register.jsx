@@ -16,7 +16,7 @@ function Register() {
             </label>
             <input
               type="text"
-              id="name"
+              name="name"
               className="login-register__input"
               placeholder="Введите имя"
               required
@@ -32,7 +32,7 @@ function Register() {
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               className="login-register__input"
               placeholder="Введите почту"
               required
@@ -46,7 +46,7 @@ function Register() {
             </label>
             <input
               type="password"
-              id="password"
+              name="password"
               className="login-register__input login-register__input_error"
               placeholder="Введите пароль"
               required

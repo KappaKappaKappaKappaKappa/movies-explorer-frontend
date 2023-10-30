@@ -1,52 +1,20 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import { isEmail } from "validator";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 function Login() {
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [emailError, setEmailError] = useState("");
-
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  const handleInputEmail = (e) => {
-    setEmailInputValue(e.target.value);
-
-    const isEmailValid = isEmail(e.target.value);
-
-    if (!isEmailValid) {
-      setEmailError("Некорректный адрес электронной почты");
-    } else {
-      setEmailError("");
-    }
-
-    setIsFormValid(isEmailValid && passwordInputValue.length >= 8);
-  };
-
-  const handleInputPassword = (e) => {
-    setPasswordInputValue(e.target.value);
-
-    if (e.target.value.length < 8) {
-      setPasswordError("Пароль должен быть не менее 8 символов");
-    } else {
-      setPasswordError("");
-    }
-    setIsFormValid(isEmail(emailInputValue) && e.target.value.length >= 8);
-  };
-
-  const resetForm = () => {
-    setIsFormValid(false);
-    setEmailInputValue("");
-    setPasswordInputValue("");
-  };
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormValidation({});
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    resetForm();
+    console.log("login");
   };
+
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   return (
     <main className="login-register">
@@ -66,18 +34,20 @@ function Login() {
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               className={
-                emailError
+                errors.email
                   ? "login-register__input login-register__input_error"
                   : "login-register__input"
               }
               placeholder="Введите почту"
-              value={emailInputValue}
+              value={values.email || ""}
               required
-              onChange={handleInputEmail}
+              onChange={handleChange}
             />
-            <span className="login-register__error-message">{emailError}</span>
+            <span className="login-register__error-message">
+              {errors.email}
+            </span>
           </div>
 
           <div className="login-register__input-container">
@@ -86,9 +56,9 @@ function Login() {
             </label>
             <input
               type="password"
-              id="password"
+              name="password"
               className={
-                passwordError
+                errors.password
                   ? "login-register__input login-register__input_error"
                   : "login-register__input"
               }
@@ -96,22 +66,22 @@ function Login() {
               required
               minLength={8}
               maxLength={20}
-              value={passwordInputValue}
-              onChange={handleInputPassword}
+              value={values.password || ""}
+              onChange={handleChange}
             />
             <span className="login-register__error-message">
-              {passwordError}
+              {errors.password}
             </span>
           </div>
         </div>
         <button
           className={
-            isFormValid
+            isValid
               ? "login-register__submit-btn"
               : "login-register__submit-btn login-register__submit-btn_inactive"
           }
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isValid}
         >
           Войти
         </button>
