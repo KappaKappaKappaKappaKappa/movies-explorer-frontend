@@ -8,8 +8,8 @@ function Register({ handleRegister }) {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    handleRegister(values);
     resetForm();
-    handleRegister();
   };
 
   return (
@@ -18,7 +18,11 @@ function Register({ handleRegister }) {
         <img src={logo} alt="Логотип сайта" className="login-register__logo" />
       </Link>
       <h1 className="login-register__title">Добро пожаловать!</h1>
-      <form className="login-register__form" onSubmit={handleSubmitForm}>
+      <form
+        className="login-register__form"
+        noValidate
+        onSubmit={handleSubmitForm}
+      >
         <div className="login-register__inputs-container">
           <div className="login-register__input-container">
             <label htmlFor="name" className="login-register__input-title">
@@ -95,6 +99,7 @@ function Register({ handleRegister }) {
               : "login-register__submit-btn login-register__submit-btn_inactive"
           }
           type="submit"
+          disabled={!isValid}
         >
           Зарегистрироваться
         </button>

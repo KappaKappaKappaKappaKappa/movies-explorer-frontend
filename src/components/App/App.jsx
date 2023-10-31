@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import * as auth from "../../utils/auth.js";
+import * as JwtToken from "../../utils/token.js";
 
 function App() {
   const navigate = useNavigate();
@@ -33,25 +34,34 @@ function App() {
     setSideMenuActive(!sideMenuActive);
   };
 
-  const loginUser = async (email, password) => {
-    try {
-      const data = await auth.handleLoginUser(email, password);
-      if (data.token) {
-        setIsLoggedIn(true);
-        navigate("/movies");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const loginUser = (email, password) => {
+    auth
+      .handleLoginUser(email, password)
+      .then((token) => {
+        if (token) {
+          JwtToken.saveToken(token);
+          auth.updateToken(token);
+          setIsLoggedIn(true);
+          navigate("/movies");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const registerUser = async (name, email, password) => {
-    try {
-      const res = await auth.handleRegisterUser(name, email, password);
-      loginUser(email, password);
-    } catch (error) {
-      console.log(error);
-    }
+  const registerUser = (data) => {
+    auth
+      .handleRegisterUser(data)
+      .then((res) => {
+        console.log(res);
+        if (res._id) {
+          loginUser(res.email, res.password);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
