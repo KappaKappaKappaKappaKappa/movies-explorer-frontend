@@ -8,11 +8,13 @@ import Register from "../Register/Register.jsx";
 import Login from "../Login/Login.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
+import * as auth from "../../utils/auth.js";
 
 function App() {
+  const navigate = useNavigate();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
@@ -30,6 +32,28 @@ function App() {
   const handleClickSideMenuButton = () => {
     setSideMenuActive(!sideMenuActive);
   };
+
+  const loginUser = async (email, password) => {
+    try {
+      const data = await auth.handleLoginUser(email, password);
+      if (data.token) {
+        setIsLoggedIn(true);
+        navigate("/movies");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const registerUser = async (name, email, password) => {
+    try {
+      const res = await auth.handleRegisterUser(name, email, password);
+      loginUser(email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="app">
       {isHeaderVisible && (
@@ -57,9 +81,12 @@ function App() {
           element={<ProtectedRoute element={<Profile />} />}
         />
 
-        <Route path="/signin" element={<Login />} />
+        <Route path="/signin" element={<Login handleLogin={loginUser} />} />
 
-        <Route path="/signup" element={<Register />} />
+        <Route
+          path="/signup"
+          element={<Register handleRegister={registerUser} />}
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

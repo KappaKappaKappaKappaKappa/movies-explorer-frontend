@@ -2,14 +2,14 @@ import { useFormValidation } from "../../hooks/useFormValidation";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
-function Register() {
+function Register({ handleRegister }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation({});
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     resetForm();
-    console.log("register");
+    handleRegister();
   };
 
   return (
