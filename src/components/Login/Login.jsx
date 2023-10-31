@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { useFormValidation } from "../../hooks/useFormValidation";
@@ -9,12 +8,9 @@ function Login() {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    resetForm();
     console.log("login");
   };
-
-  useEffect(() => {
-    resetForm();
-  }, [resetForm]);
 
   return (
     <main className="login-register">

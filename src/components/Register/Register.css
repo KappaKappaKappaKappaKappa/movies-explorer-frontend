@@ -93,15 +93,16 @@
   margin-bottom: 6px;
 }
 
-.login-register__input_error {
-  color: #ee3465;
-}
-
 .login-register__input:focus {
   border-bottom: 1px solid #4285f4;
 }
 
-.regiter__submit-btn {
+.login-register__input_error {
+  color: #ee3465;
+  border-bottom: 1px solid #ee3465;
+}
+
+.login-register__submit-btn {
   all: unset;
   background-color: #4285f4;
   width: 100%;
@@ -125,11 +126,21 @@
   }
 }
 
+.login-register__submit-btn_inactive {
+  background-color: #424242;
+  color: #8b8b8b;
+}
+
+.login-register__submit-btn_inactive:hover {
+  opacity: 1;
+  cursor: unset;
+}
+
 .login-register__error-message {
   color: #ee3465;
   font-size: 10px;
   font-weight: 400;
-  height: 12px;
+  height: 24px;
 }
 
 .login-register__login-text {
