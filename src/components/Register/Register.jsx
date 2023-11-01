@@ -8,7 +8,7 @@ function Register({ handleRegister }) {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    handleRegister(values);
+    handleRegister(values.name, values.email, values.password);
     resetForm();
   };
 

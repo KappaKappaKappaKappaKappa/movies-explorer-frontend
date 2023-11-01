@@ -5,9 +5,10 @@ const headers = {
 };
 
 const checkResponse = (res) => {
-  res.ok
-    ? res.json()
-    : Promise.reject(new Error(`Ошибка ${res.status}: ${res.statusText}`));
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(res);
 };
 
 export const handleLoginUser = (email, password) => {
@@ -18,17 +19,15 @@ export const handleLoginUser = (email, password) => {
       email,
       password,
     }),
-  }).then((res) => {
-    checkResponse(res);
-  });
+  }).then((res) => checkResponse(res));
 };
 
-export const handleRegisterUser = (data) => {
+export const handleRegisterUser = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers,
-    body: JSON.stringify(data),
-  }).then(checkResponse);
+    body: JSON.stringify({ name, email, password }),
+  }).then((res) => checkResponse(res));
 };
 
 export const updateToken = (token) => {

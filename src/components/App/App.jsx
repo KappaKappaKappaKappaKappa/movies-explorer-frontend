@@ -16,7 +16,7 @@ import * as JwtToken from "../../utils/token.js";
 function App() {
   const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
   const { pathname } = useLocation();
@@ -50,13 +50,13 @@ function App() {
       });
   };
 
-  const registerUser = (data) => {
+  const registerUser = (name, email, password) => {
     auth
-      .handleRegisterUser(data)
+      .handleRegisterUser(name, email, password)
       .then((res) => {
         console.log(res);
         if (res._id) {
-          loginUser(res.email, res.password);
+          loginUser(email, password);
         }
       })
       .catch((error) => {
@@ -78,17 +78,19 @@ function App() {
 
         <Route
           path="/movies"
-          element={<ProtectedRoute element={<Movies />} />}
+          element={<ProtectedRoute loggedIn={isLoggedIn} element={Movies} />}
         />
 
         <Route
           path="/saved-movies"
-          element={<ProtectedRoute element={<SavedMovies />} />}
+          element={
+            <ProtectedRoute loggedIn={isLoggedIn} element={SavedMovies} />
+          }
         />
 
         <Route
           path="/profile"
-          element={<ProtectedRoute element={<Profile />} />}
+          element={<ProtectedRoute loggedIn={isLoggedIn} element={Profile} />}
         />
 
         <Route path="/signin" element={<Login handleLogin={loginUser} />} />

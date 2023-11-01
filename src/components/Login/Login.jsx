@@ -8,8 +8,8 @@ function Login({ handleLogin }) {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    handleLogin(values.email, values.password);
     resetForm();
-    handleLogin();
   };
 
   return (
