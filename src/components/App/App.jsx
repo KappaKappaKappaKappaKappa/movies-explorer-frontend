@@ -7,16 +7,17 @@ import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Login from "../Login/Login.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import * as auth from "../../utils/auth.js";
 import * as JwtToken from "../../utils/token.js";
 
 function App() {
+  const token = localStorage.getItem("jwt");
   const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
   const { pathname } = useLocation();
@@ -54,7 +55,6 @@ function App() {
     auth
       .handleRegisterUser(name, email, password)
       .then((res) => {
-        console.log(res);
         if (res._id) {
           loginUser(email, password);
         }
@@ -63,6 +63,15 @@ function App() {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+      if (pathname === "/signup" || pathname === "/signin") {
+        navigate("/movies");
+      }
+    }
+  }, [token, isLoggedIn, pathname, navigate]);
 
   return (
     <section className="app">
