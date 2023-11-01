@@ -29,7 +29,3 @@ export const handleRegisterUser = (name, email, password) => {
     body: JSON.stringify({ name, email, password }),
   }).then((res) => checkResponse(res));
 };
-
-export const updateToken = (token) => {
-  headers.Authorization = `Bearer ${localStorage.getItem("jwt")}`;
-};

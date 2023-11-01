@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import currentUserContext from "../../contexts/currentUserContext";
 
 function Profile({ handleLogout }) {
+  const currentUser = React.useContext(currentUserContext);
   const [isRedactorMode, setIsRedactorMode] = useState(false);
 
   const handleClickEditProfile = () => {
@@ -17,7 +19,8 @@ function Profile({ handleLogout }) {
           </label>
           <input
             className="form__input"
-            placeholder="Виталий"
+            placeholder="Тут должно быть ваше имя"
+            value={currentUser.data.name}
             name="name"
             disabled={!isRedactorMode}
             minLength={2}
@@ -30,7 +33,8 @@ function Profile({ handleLogout }) {
           </label>
           <input
             className="form__input"
-            placeholder="pochta@yandex.ru"
+            placeholder="Тут должен быть ваш email"
+            value={currentUser.data.email}
             name="email"
             disabled={!isRedactorMode}
           />

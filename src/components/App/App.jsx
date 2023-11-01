@@ -13,7 +13,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
 import * as JwtToken from "../../utils/token.js";
-import * as mainApi from "../../utils/MainApi.js";
+import * as MainApi from "../../utils/MainApi.js";
 
 function App() {
   const token = localStorage.getItem("jwt");
@@ -22,10 +22,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    email: "",
-  });
+  const [currentUser, setCurrentUser] = useState({});
 
   const { pathname } = useLocation();
 
@@ -48,10 +45,8 @@ function App() {
       .then((data) => {
         if (data.token) {
           JwtToken.saveToken(data.token);
-          auth.updateToken(data.token);
           setIsLoggedIn(true);
           navigate("/movies");
-          console.log(localStorage);
         }
       })
       .catch((error) => {
@@ -73,28 +68,23 @@ function App() {
   };
 
   const logoutUser = () => {
-    JwtToken.remoteToken("jwt");
+    localStorage.clear();
+    setCurrentUser({});
     setIsLoggedIn(false);
     navigate("/");
   };
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     mainApi
-  //       .getUserInfo()
-  //       .then((res) => {
-  //         setCurrentUser({
-  //           name: res.name,
-  //           email: res.email,
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         setIsLoggedIn(false);
-  //         navigate("/signin");
-  //         console.log(error);
-  //       });
-  //   }
-  // }, [isLoggedIn, token]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      MainApi.getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (token) {

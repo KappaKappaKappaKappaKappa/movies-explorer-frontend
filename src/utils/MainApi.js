@@ -4,7 +4,7 @@ const headers = {
 
 const BASE_URL = "http://localhost:3000";
 
-const checkServerResponse = (res) => {
+const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -14,9 +14,9 @@ const checkServerResponse = (res) => {
 export const getUserInfo = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
-    headers,
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-  }).then((res) => {
-    checkServerResponse(res);
-  });
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  }).then(checkResponse);
 };
