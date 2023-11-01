@@ -10,8 +10,10 @@ import NotFound from "../NotFound/NotFound.jsx";
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
+import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
 import * as JwtToken from "../../utils/token.js";
+import * as mainApi from "../../utils/MainApi.js";
 
 function App() {
   const token = localStorage.getItem("jwt");
@@ -19,6 +21,11 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
+
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+  });
 
   const { pathname } = useLocation();
 
@@ -38,12 +45,13 @@ function App() {
   const loginUser = (email, password) => {
     auth
       .handleLoginUser(email, password)
-      .then((token) => {
-        if (token) {
-          JwtToken.saveToken(token);
-          auth.updateToken(token);
+      .then((data) => {
+        if (data.token) {
+          JwtToken.saveToken(data.token);
+          auth.updateToken(data.token);
           setIsLoggedIn(true);
           navigate("/movies");
+          console.log(localStorage);
         }
       })
       .catch((error) => {
@@ -70,6 +78,24 @@ function App() {
     navigate("/");
   };
 
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     mainApi
+  //       .getUserInfo()
+  //       .then((res) => {
+  //         setCurrentUser({
+  //           name: res.name,
+  //           email: res.email,
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         setIsLoggedIn(false);
+  //         navigate("/signin");
+  //         console.log(error);
+  //       });
+  //   }
+  // }, [isLoggedIn, token]);
+
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
@@ -80,52 +106,54 @@ function App() {
   }, [token, isLoggedIn, pathname, navigate]);
 
   return (
-    <section className="app">
-      {isHeaderVisible && (
-        <Header
-          isLoggedIn={isLoggedIn}
-          handleClickSideMenuButton={handleClickSideMenuButton}
-          sideMenuActive={sideMenuActive}
-        />
-      )}
-      <Routes>
-        <Route path="/" element={<Main />} />
+    <currentUserContext.Provider value={currentUser}>
+      <section className="app">
+        {isHeaderVisible && (
+          <Header
+            isLoggedIn={isLoggedIn}
+            handleClickSideMenuButton={handleClickSideMenuButton}
+            sideMenuActive={sideMenuActive}
+          />
+        )}
+        <Routes>
+          <Route path="/" element={<Main />} />
 
-        <Route
-          path="/movies"
-          element={<ProtectedRoute loggedIn={isLoggedIn} element={Movies} />}
-        />
+          <Route
+            path="/movies"
+            element={<ProtectedRoute loggedIn={isLoggedIn} element={Movies} />}
+          />
 
-        <Route
-          path="/saved-movies"
-          element={
-            <ProtectedRoute loggedIn={isLoggedIn} element={SavedMovies} />
-          }
-        />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute loggedIn={isLoggedIn} element={SavedMovies} />
+            }
+          />
 
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute
-              loggedIn={isLoggedIn}
-              handleLogout={logoutUser}
-              element={Profile}
-            />
-          }
-        />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute
+                loggedIn={isLoggedIn}
+                handleLogout={logoutUser}
+                element={Profile}
+              />
+            }
+          />
 
-        <Route path="/signin" element={<Login handleLogin={loginUser} />} />
+          <Route path="/signin" element={<Login handleLogin={loginUser} />} />
 
-        <Route
-          path="/signup"
-          element={<Register handleRegister={registerUser} />}
-        />
+          <Route
+            path="/signup"
+            element={<Register handleRegister={registerUser} />}
+          />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
 
-      {isFooterVisible && <Footer />}
-    </section>
+        {isFooterVisible && <Footer />}
+      </section>
+    </currentUserContext.Provider>
   );
 }
 
