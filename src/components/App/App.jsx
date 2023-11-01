@@ -64,6 +64,12 @@ function App() {
       });
   };
 
+  const logoutUser = () => {
+    JwtToken.remoteToken("jwt");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
@@ -99,7 +105,13 @@ function App() {
 
         <Route
           path="/profile"
-          element={<ProtectedRoute loggedIn={isLoggedIn} element={Profile} />}
+          element={
+            <ProtectedRoute
+              loggedIn={isLoggedIn}
+              handleLogout={logoutUser}
+              element={Profile}
+            />
+          }
         />
 
         <Route path="/signin" element={<Login handleLogin={loginUser} />} />

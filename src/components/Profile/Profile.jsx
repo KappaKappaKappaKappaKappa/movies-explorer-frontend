@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Profile() {
+function Profile({ handleLogout }) {
   const [isRedactorMode, setIsRedactorMode] = useState(false);
 
   const handleClickEditProfile = () => {
@@ -49,9 +49,9 @@ function Profile() {
           >
             Редактировать
           </button>
-          <Link to="/signin" className="profile__logout-btn">
+          <button className="profile__logout-btn" onClick={handleLogout}>
             Выйти из аккаунта
-          </Link>
+          </button>
         </div>
       )}
     </main>
