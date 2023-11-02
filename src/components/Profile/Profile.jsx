@@ -3,30 +3,35 @@ import currentUserContext from "../../contexts/currentUserContext";
 import { updateUserInfo } from "../../utils/MainApi";
 
 function Profile({ handleLogout }) {
-  const currentUser = React.useContext(currentUserContext);
+  //Подключение контекста currentUser в компонент
+  const [currentUser, setCurrentUser] = React.useContext(currentUserContext);
 
+  //Стейт состояния режима редактирования
   const [isRedactorMode, setIsRedactorMode] = useState(false);
 
+  // Стейт состояния кнопки сохранения
   const [buttonSaveActive, setButtonSaveActive] = useState(false);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  //Стейты name и email для отображения данных из контекста
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
 
-  const [nameInputError, setNameInputError] = useState("");
-  const [emailInputError, setEmailInputError] = useState("");
+  //Стейты для проверки инпут полей на валидность
+  const [isInputNameValid, setIsInputNameValid] = useState(true);
+  const [isInputEmailValid, setIsInputEmailValid] = useState(true);
 
-  const [isInputNameValid, setIsInputNameValid] = useState(false);
-  const [isInputEmailValid, setIsInputEmailValid] = useState(false);
-
+  //Метод для включения режима редактирования при нажатии на кнопку
   const handleClickEditProfile = () => {
     setIsRedactorMode(true);
   };
 
+  //Подгрузка данных пользователя с сервера
   useEffect(() => {
     setName(currentUser.data.name);
     setEmail(currentUser.data.email);
   }, [currentUser]);
 
+  //Если инпут и данные сервера совпадают, то кнопка "Сохранить" не активна
   useEffect(() => {
     if (currentUser.data.name !== name || currentUser.data.email !== email) {
       setButtonSaveActive(true);
@@ -35,22 +40,28 @@ function Profile({ handleLogout }) {
     }
   }, [currentUser, name, email]);
 
+  //Обновление стейта name при вводе нового значения name
   const handleNameChange = (e) => {
-    setName(e.target.value);
-    setNameInputError(e.target.validationMessage);
+    const input = e.target;
+    setName(input.value);
+    setIsInputNameValid(input.validity.valid);
   };
 
+  //Обновление стейта email при вводе нового значения email
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailInputError(e.target.validationMessage);
+    const input = e.target;
+    setEmail(input.value);
+    setIsInputEmailValid(input.validity.valid);
   };
 
+  //Обработка отправки формы. Посылается запрос на сервер с новыми данными, в ответ получаем объект с обновленными данными. Обновляем стейт name и email, а так же данные пользователя в контексте. Завершаем оработку отключением кнопки сохранения и режима редактирования.
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUserInfo({ name: name, email: email })
       .then((userData) => {
         setName(userData.data.name);
         setEmail(userData.data.email);
+        setCurrentUser(userData);
       })
       .catch((error) => {
         console.log(error);
@@ -62,7 +73,7 @@ function Profile({ handleLogout }) {
   return (
     <main className="profile">
       <h1 className="profile__title">{`Привет, ${name}`}</h1>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit} noValidate>
         <div className="form__container-name">
           <label htmlFor="name" className="form__input-title">
             Имя
@@ -78,7 +89,9 @@ function Profile({ handleLogout }) {
             maxLength={25}
           />
         </div>
-        <span className="form__input_error">{nameInputError}</span>
+        <span className="form__input_error">
+          {!isInputNameValid ? "Не короче 2 символов" : ""}
+        </span>
 
         <div className="form__container-email">
           <label htmlFor="email" className="form__input-title">
@@ -94,13 +107,15 @@ function Profile({ handleLogout }) {
             disabled={!isRedactorMode}
           />
         </div>
-        <span className="form__input_error">{emailInputError}</span>
+        <span className="form__input_error">
+          {!isInputEmailValid ? "С почтой что-то не то..." : ""}
+        </span>
         {isRedactorMode && (
           <button
             type="submit"
             disabled={!buttonSaveActive}
             className={
-              buttonSaveActive
+              isInputEmailValid && isInputNameValid && buttonSaveActive
                 ? "form__submit-btn"
                 : "form__submit-btn form__submit-btn_disabled"
             }

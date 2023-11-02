@@ -84,6 +84,7 @@ function App() {
         });
     }
   }, [isLoggedIn]);
+  
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -96,7 +97,7 @@ function App() {
   }, [isLoggedIn, pathname, navigate]);
 
   return (
-    <currentUserContext.Provider value={currentUser}>
+    <currentUserContext.Provider value={[currentUser, setCurrentUser]}>
       <section className="app">
         {isHeaderVisible && (
           <Header
