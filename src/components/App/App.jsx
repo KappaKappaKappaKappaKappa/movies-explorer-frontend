@@ -16,7 +16,6 @@ import * as JwtToken from "../../utils/token.js";
 import * as MainApi from "../../utils/MainApi.js";
 
 function App() {
-  const token = localStorage.getItem("jwt");
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -87,13 +86,14 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
+    const token = localStorage.getItem("jwt");
     if (token) {
       setIsLoggedIn(true);
       if (pathname === "/signup" || pathname === "/signin") {
         navigate("/movies");
       }
     }
-  }, [token, isLoggedIn, pathname, navigate]);
+  }, [isLoggedIn, pathname, navigate]);
 
   return (
     <currentUserContext.Provider value={currentUser}>

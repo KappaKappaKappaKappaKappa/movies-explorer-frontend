@@ -41,7 +41,7 @@ function Register({ handleRegister }) {
               value={values.name || ""}
               onChange={handleChange}
               minLength={2}
-              maxLength={10}
+              maxLength={25}
             />
             <span className="login-register__error-message">{errors.name}</span>
           </div>
