@@ -14,6 +14,7 @@ import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
 import * as JwtToken from "../../utils/token.js";
 import * as MainApi from "../../utils/MainApi.js";
+import { getAllMovies } from "../../utils/MoviesApi";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});

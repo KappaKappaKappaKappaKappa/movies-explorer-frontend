@@ -68,9 +68,10 @@
 .search__input-error {
   display: block;
   color: #ee3465;
-  font-size: 10px;
+  font-size: 0.6875rem;
   font-weight: 400;
   height: 12px;
+  text-align: center;
 }
 
 .search__submit-btn {
