@@ -20,6 +20,10 @@ function Profile({ handleLogout }) {
   const [isInputNameValid, setIsInputNameValid] = useState(true);
   const [isInputEmailValid, setIsInputEmailValid] = useState(true);
 
+  // Стейт для состояния сообщения о запросе
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [updateError, setUpdateError] = useState(false);
+
   //Метод для включения режима редактирования при нажатии на кнопку
   const handleClickEditProfile = () => {
     setIsRedactorMode(true);
@@ -62,17 +66,21 @@ function Profile({ handleLogout }) {
         setName(userData.data.name);
         setEmail(userData.data.email);
         setCurrentUser(userData);
+        setIsRedactorMode(false);
+        setUpdateSuccess(true);
+        setUpdateError(false);
       })
       .catch((error) => {
         console.log(error);
+        setUpdateError(true);
+        setUpdateSuccess(false);
       });
     setButtonSaveActive(false);
-    setIsRedactorMode(false);
   };
 
   return (
     <main className="profile">
-      <h1 className="profile__title">{`Привет, ${name}`}</h1>
+      <h1 className="profile__title">{`Привет, ${name}!`}</h1>
       <form className="form" onSubmit={handleSubmit} noValidate>
         <div className="form__container-name">
           <label htmlFor="name" className="form__input-title">
@@ -109,6 +117,16 @@ function Profile({ handleLogout }) {
         </div>
         <span className="form__input_error">
           {!isInputEmailValid ? "С почтой что-то не то..." : ""}
+        </span>
+        <span
+          className={
+            updateError
+              ? "form__submit-message form__submit-message_error"
+              : "form__submit-message"
+          }
+        >
+          {updateSuccess && "Данные успешно обновлены!"}
+          {updateError && "Что-то пошло не так..."}
         </span>
         {isRedactorMode && (
           <button

@@ -16,12 +16,11 @@ import * as JwtToken from "../../utils/token.js";
 import * as MainApi from "../../utils/MainApi.js";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
-
-  const [currentUser, setCurrentUser] = useState({});
 
   const { pathname } = useLocation();
 
@@ -34,10 +33,12 @@ function App() {
   const isFooterVisible =
     pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
 
+  //Функция открытия бокового меню
   const handleClickSideMenuButton = () => {
     setSideMenuActive(!sideMenuActive);
   };
 
+  // Функция авторизации пользователя
   const loginUser = (email, password) => {
     auth
       .handleLoginUser(email, password)
@@ -53,6 +54,7 @@ function App() {
       });
   };
 
+  // Функция регистрации пользователя
   const registerUser = (name, email, password) => {
     auth
       .handleRegisterUser(name, email, password)
@@ -66,6 +68,7 @@ function App() {
       });
   };
 
+  // Функция для logout
   const logoutUser = () => {
     localStorage.clear();
     setCurrentUser({});
@@ -73,6 +76,7 @@ function App() {
     navigate("/");
   };
 
+  // Эффект получает данные о пользователе с сервера и устанавливает контекст currentUser
   useEffect(() => {
     if (isLoggedIn) {
       MainApi.getUserInfo()
@@ -84,8 +88,8 @@ function App() {
         });
     }
   }, [isLoggedIn]);
-  
 
+  // Эффект для проверки токена при заходе на сайт или обновления страницы
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
