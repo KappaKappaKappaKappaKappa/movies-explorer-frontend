@@ -22,8 +22,11 @@ function Movies() {
     if (shortsFilms) {
       setOnlyShorts(JSON.parse(shortsFilms));
     }
+
     const shortsStatus = localStorage.getItem("is-shorts");
-    setIsShorts(JSON.parse(shortsStatus));
+    if (shortsStatus) {
+      setIsShorts(JSON.parse(shortsStatus));
+    }
 
     const storedMovies = localStorage.getItem("movies");
     if (storedMovies) {
@@ -66,7 +69,6 @@ function Movies() {
   const handleToggleFilter = () => {
     setIsShorts(!isShorts);
     localStorage.setItem("is-shorts", JSON.stringify(!isShorts));
-    console.log(localStorage);
   };
 
   return (
