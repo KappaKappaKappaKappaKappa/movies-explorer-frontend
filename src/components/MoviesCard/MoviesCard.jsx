@@ -1,8 +1,7 @@
 import { useState } from "react";
-import testImg from "../../images/test-pic.png";
 import { useLocation } from "react-router-dom";
 
-function MoviesCard() {
+function MoviesCard({ movie }) {
   const { pathname } = useLocation();
 
   const [isSavedCard, setIsSavedCard] = useState(false);
@@ -11,13 +10,23 @@ function MoviesCard() {
     setIsSavedCard(!isSavedCard);
   };
 
+  const converTime = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const totalMinutes = minutes % 60;
+    return `${hours} ч ${totalMinutes} м`;
+  };
+
   return (
     <article className="card">
       <div className="card__info-container">
-        <h2 className="card__title">В погоне за Бенкси</h2>
-        <p className="card__duration">0ч 42м</p>
+        <h2 className="card__title">{movie.nameRU}</h2>
+        <p className="card__duration">{converTime(movie.duration)}</p>
       </div>
-      <img src={testImg} alt="Картинка карточки" className="card__img" />
+      <img
+        src={`https://api.nomoreparties.co/${movie.image.url}`}
+        alt="Картинка карточки"
+        className="card__img"
+      />
       {pathname === "/movies" && !isSavedCard && (
         <button className="card__save-btn" onClick={handleClickSaveBtnCard}>
           Сохранить

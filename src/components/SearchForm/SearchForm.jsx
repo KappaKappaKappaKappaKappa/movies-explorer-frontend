@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm() {
+function SearchForm({ handleSubmitSearchForm, handleToggleFilter, isShorts }) {
   const [inputValid, setInputValid] = useState(true);
 
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const keyword = localStorage.getItem("keyword");
+    if (keyword) {
+      setInputValue(keyword);
+    }
+  }, []);
 
   const handleChangeInputValue = (e) => {
     const value = e.target.value;
@@ -16,6 +24,9 @@ function SearchForm() {
     e.preventDefault();
     if (!inputValue) {
       setInputValid(false);
+    } else {
+      handleSubmitSearchForm(inputValue);
+      localStorage.setItem("keyword", inputValue);
     }
   };
   return (
@@ -33,6 +44,7 @@ function SearchForm() {
             placeholder="Фильм"
             name="movies-search"
             aria-label="Поиск по фильмам"
+            value={inputValue || ""}
             required
             onChange={handleChangeInputValue}
           />
@@ -45,7 +57,10 @@ function SearchForm() {
         </span>
       </form>
       <div className="search__shorts-container">
-        <FilterCheckbox />
+        <FilterCheckbox
+          isShorts={isShorts}
+          handleToggleFilter={handleToggleFilter}
+        />
         <p className="search__shorts-title">Короткометражки</p>
       </div>
     </section>
