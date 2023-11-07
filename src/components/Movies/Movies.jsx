@@ -11,6 +11,7 @@ function Movies() {
   const [isLoading, setIsLoading] = useState(false);
   const [onlyShorts, setOnlyShorts] = useState([]);
   const [isShorts, setIsShorts] = useState(false);
+  const [isNoContent, setIsNoContent] = useState(false);
 
   useEffect(() => {
     const filteredFilms = localStorage.getItem("filtered-movies");
@@ -55,6 +56,7 @@ function Movies() {
       });
       setFilteredMovies(filteredFilms);
       localStorage.setItem("filtered-movies", JSON.stringify(filteredFilms));
+
       const shortsFilms = movies.filter((movie) => {
         return (
           movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
@@ -63,6 +65,12 @@ function Movies() {
       });
       setOnlyShorts(shortsFilms);
       localStorage.setItem("shorts-films", JSON.stringify(shortsFilms));
+
+      if (shortsFilms.length < 1 && filteredFilms.length < 1) {
+        setIsNoContent(true);
+      } else {
+        setIsNoContent(false);
+      }
     }
   };
 
@@ -83,6 +91,7 @@ function Movies() {
         filteredMovies={filteredMovies}
         onlyShorts={onlyShorts}
         isShorts={isShorts}
+        isNoContent={isNoContent}
       />
     </main>
   );

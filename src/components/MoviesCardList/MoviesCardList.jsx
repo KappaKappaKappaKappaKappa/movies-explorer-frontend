@@ -2,19 +2,21 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 import { useLocation } from "react-router-dom";
 
-function MoviesCardList({ filteredMovies, onlyShorts, isShorts }) {
+function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
   const { pathname } = useLocation();
   return (
     <section className="cards-list">
       <div className="cards-list__container">
-        {!isShorts &&
-          filteredMovies.map((movie) => {
-            return <MoviesCard key={movie.id} movie={movie} />;
-          })}
-        {isShorts &&
-          onlyShorts.map((movie) => {
-            return <MoviesCard key={movie.id} movie={movie} />;
-          })}
+        {isNoContent && (
+          <p className="cards-list__not-found-message">Ничего не найдено!</p>
+        )}
+        {!isShorts
+          ? filteredMovies.map((movie) => {
+              return <MoviesCard key={movie.id} movie={movie} />;
+            })
+          : onlyShorts.map((movie) => {
+              return <MoviesCard key={movie.id} movie={movie} />;
+            })}
       </div>
       {pathname === "/movies" && (
         <div className="cards-list__btn-container">

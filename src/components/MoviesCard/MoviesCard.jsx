@@ -13,7 +13,7 @@ function MoviesCard({ movie }) {
   const converTime = (minutes) => {
     const hours = Math.floor(minutes / 60);
     const totalMinutes = minutes % 60;
-    return `${hours} ч ${totalMinutes} м`;
+    return `${hours}ч ${totalMinutes}м`;
   };
 
   return (

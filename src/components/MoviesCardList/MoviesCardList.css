@@ -45,6 +45,11 @@
   border-radius   : 6px;
 }
 
+.cards-list__not-found-message {
+  text-align: center;
+  color     : #ee3465;
+}
+
 .cards-list__btn-more {
   all           : unset;
   text-align    : center;
