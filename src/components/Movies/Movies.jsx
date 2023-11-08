@@ -58,7 +58,6 @@ function Movies() {
     if (storedMovies) {
       setMovies(JSON.parse(storedMovies));
       filterAndSetState(movies, keyword);
-      console.log(localStorage);
     } else {
       const getMovies = async () => {
         try {
@@ -66,7 +65,6 @@ function Movies() {
           const data = await getAllMovies();
           setMovies(data);
           localStorage.setItem("movies", JSON.stringify(data));
-          console.log(localStorage);
           filterAndSetState(data, keyword);
         } catch (error) {
           console.log(error);
