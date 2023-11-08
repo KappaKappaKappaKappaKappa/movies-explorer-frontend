@@ -28,10 +28,37 @@ function Movies() {
     if (shortsStatus) {
       setIsShorts(JSON.parse(shortsStatus));
     }
+  }, []);
 
+  const filterAndSetState = (movies, keyword) => {
+    const filteredFilms = movies.filter((movie) => {
+      return movie.nameRU.toLowerCase().includes(keyword.toLowerCase());
+    });
+    setFilteredMovies(filteredFilms);
+    localStorage.setItem("filtered-movies", JSON.stringify(filteredFilms));
+
+    const shortsFilms = movies.filter((movie) => {
+      return (
+        movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
+        movie.duration <= 40
+      );
+    });
+    setOnlyShorts(shortsFilms);
+    localStorage.setItem("shorts-films", JSON.stringify(shortsFilms));
+
+    if (shortsFilms.length < 1 && filteredFilms.length < 1) {
+      setIsNoContent(true);
+    } else {
+      setIsNoContent(false);
+    }
+  };
+
+  const handleSubmitSearchForm = (keyword) => {
     const storedMovies = localStorage.getItem("movies");
     if (storedMovies) {
       setMovies(JSON.parse(storedMovies));
+      filterAndSetState(movies, keyword);
+      console.log(localStorage);
     } else {
       const getMovies = async () => {
         try {
@@ -39,6 +66,8 @@ function Movies() {
           const data = await getAllMovies();
           setMovies(data);
           localStorage.setItem("movies", JSON.stringify(data));
+          console.log(localStorage);
+          filterAndSetState(data, keyword);
         } catch (error) {
           console.log(error);
         } finally {
@@ -46,31 +75,6 @@ function Movies() {
         }
       };
       getMovies();
-    }
-  }, []);
-
-  const handleSubmitSearchForm = (keyword) => {
-    if (keyword) {
-      const filteredFilms = movies.filter((movie) => {
-        return movie.nameRU.toLowerCase().includes(keyword.toLowerCase());
-      });
-      setFilteredMovies(filteredFilms);
-      localStorage.setItem("filtered-movies", JSON.stringify(filteredFilms));
-
-      const shortsFilms = movies.filter((movie) => {
-        return (
-          movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
-          movie.duration <= 40
-        );
-      });
-      setOnlyShorts(shortsFilms);
-      localStorage.setItem("shorts-films", JSON.stringify(shortsFilms));
-
-      if (shortsFilms.length < 1 && filteredFilms.length < 1) {
-        setIsNoContent(true);
-      } else {
-        setIsNoContent(false);
-      }
     }
   };
 
