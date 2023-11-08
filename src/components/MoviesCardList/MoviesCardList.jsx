@@ -2,12 +2,12 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  maxMovies_1280,
-  step_1280,
-  maxMovies_780,
-  step_780,
-  maxMovies_320,
-  step_320,
+  maxMovies_L_SIZE,
+  step_L_SIZE,
+  maxMovies_M_SIZE,
+  step_M_SIZE,
+  maxMovies_S_SIZE,
+  step_S_SIZE,
 } from "../../utils/contains";
 
 function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
@@ -20,17 +20,17 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1133) {
-        setMaxMoviesVisible(maxMovies_1280);
-        setMaxShortsVisible(maxMovies_1280);
-        setStep(step_1280);
+        setMaxMoviesVisible(maxMovies_L_SIZE);
+        setMaxShortsVisible(maxMovies_L_SIZE);
+        setStep(step_L_SIZE);
       } else if (window.innerWidth > 647) {
-        setMaxMoviesVisible(maxMovies_780);
-        setMaxShortsVisible(maxMovies_780);
-        setStep(step_780);
+        setMaxMoviesVisible(maxMovies_M_SIZE);
+        setMaxShortsVisible(maxMovies_M_SIZE);
+        setStep(step_M_SIZE);
       } else if (window.innerWidth < 648) {
-        setMaxMoviesVisible(maxMovies_320);
-        setMaxShortsVisible(maxMovies_320);
-        setStep(step_320);
+        setMaxMoviesVisible(maxMovies_S_SIZE);
+        setMaxShortsVisible(maxMovies_S_SIZE);
+        setStep(step_S_SIZE);
       }
     };
 

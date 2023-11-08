@@ -6,7 +6,6 @@ import { getAllMovies } from "../../utils/MoviesApi";
 import { useEffect } from "react";
 
 function Movies() {
-  const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [onlyShorts, setOnlyShorts] = useState([]);
@@ -56,14 +55,12 @@ function Movies() {
   const handleSubmitSearchForm = (keyword) => {
     const storedMovies = localStorage.getItem("movies");
     if (storedMovies) {
-      setMovies(JSON.parse(storedMovies));
-      filterAndSetState(movies, keyword);
+      filterAndSetState(JSON.parse(storedMovies), keyword);
     } else {
       const getMovies = async () => {
         try {
           setIsLoading(true);
           const data = await getAllMovies();
-          setMovies(data);
           localStorage.setItem("movies", JSON.stringify(data));
           filterAndSetState(data, keyword);
         } catch (error) {
