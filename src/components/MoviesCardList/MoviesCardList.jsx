@@ -10,7 +10,15 @@ import {
   step_S_SIZE,
 } from "../../utils/contains";
 
-function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
+function MoviesCardList({
+  filteredMovies,
+  onlyShorts,
+  isShorts,
+  isNoContent,
+  handleSaveFilm,
+  handleDeleteSavedFilm,
+  savedMovies,
+}) {
   const { pathname } = useLocation();
   const [isBtnMoreActive, setIsBtnMoreActive] = useState(false);
   const [maxMoviesVisible, setMaxMoviesVisible] = useState(0);
@@ -53,7 +61,6 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
         setMaxShortsVisible(maxMovies_S_SIZE);
         setStep(step_S_SIZE);
       }
-      console.log(123);
     };
 
     handleResize();
@@ -85,7 +92,13 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
         {(isShorts ? onlyShorts : filteredMovies)
           .slice(0, isShorts ? maxShortsVisible : maxMoviesVisible)
           .map((movie) => (
-            <MoviesCard key={movie.id} movie={movie} />
+            <MoviesCard
+              key={movie.id}
+              {...movie}
+              handleSaveFilm={handleSaveFilm}
+              handleDeleteSavedFilm={handleDeleteSavedFilm}
+              savedMovies={savedMovies}
+            />
           ))}
       </div>
       {pathname === "/movies" && isBtnMoreActive && (

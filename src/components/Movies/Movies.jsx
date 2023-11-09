@@ -4,8 +4,9 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import { getAllMovies } from "../../utils/MoviesApi";
 import { useEffect } from "react";
+import { saveMovie, deleteMovie } from "../../utils/MainApi";
 
-function Movies() {
+function Movies({ savedMovies, setSavedMovies }) {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [onlyShorts, setOnlyShorts] = useState([]);
@@ -28,6 +29,35 @@ function Movies() {
       setIsShorts(JSON.parse(shortsStatus));
     }
   }, []);
+
+  const handleSaveFilm = (movie) => {
+    saveMovie(movie)
+      .then((data) => {
+        setSavedMovies([data.data, ...savedMovies]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteSavedFilm = (movieId) => {
+    const deletedMovie = savedMovies.find((savedMovie) => {
+      return savedMovie.movieId === movieId;
+    });
+    const idDeletedMovie = deletedMovie._id;
+
+    deleteMovie(idDeletedMovie)
+      .then((res) => {
+        setSavedMovies((state) => {
+          state.filter((movie) => {
+            return movie._id !== idDeletedMovie;
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const filterAndSetState = (movies, keyword) => {
     const filteredFilms = movies.filter((movie) => {
@@ -91,6 +121,9 @@ function Movies() {
         onlyShorts={onlyShorts}
         isShorts={isShorts}
         isNoContent={isNoContent}
+        handleSaveFilm={handleSaveFilm}
+        handleDeleteSavedFilm={handleDeleteSavedFilm}
+        savedMovies={savedMovies}
       />
     </main>
   );

@@ -37,7 +37,7 @@ export const updateUserInfo = (data) => {
   }).then(checkResponse);
 };
 
-export const saveMovie = (data) => {
+export const saveMovie = (movie) => {
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -45,18 +45,18 @@ export const saveMovie = (data) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      nameRU: data.nameRU,
-      nameEN: data.nameEN,
-      country: data.country,
-      duration: data.duration,
-      director: data.director,
-      year: data.year,
-      description: data.description,
-      image: `https://api.nomoreparties.co/${data.image.url}`,
-      trailerLink: data.trailerLink,
-      thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
-      movieId: data.id,
+      ...movie,
     }),
+  }).then(checkResponse);
+};
+
+export const deleteMovie = (movieId) => {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 };
 

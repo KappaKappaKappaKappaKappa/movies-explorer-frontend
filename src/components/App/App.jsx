@@ -22,6 +22,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
 
+  const [savedMovies, setSavedMovies] = useState([]);
+
   const { pathname } = useLocation();
 
   const isHeaderVisible =
@@ -100,6 +102,23 @@ function App() {
     }
   }, [isLoggedIn, pathname, navigate]);
 
+  //Проверяем есть ли данные о CurrentUser. Если да - загружаем сохраненные пользователем фильмы
+  useEffect(() => {
+    if (isLoggedIn && currentUser.data && currentUser.data._id) {
+      MainApi.getSavedMovies()
+        .then((data) => {
+          const ownSavedMovies = data.data.filter((movie) => {
+            return movie.owner === currentUser.data._id;
+          });
+          setSavedMovies(ownSavedMovies);
+          localStorage.setItem("saved-movies", JSON.stringify(ownSavedMovies));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [isLoggedIn, currentUser]);
+
   return (
     <currentUserContext.Provider value={[currentUser, setCurrentUser]}>
       <section className="app">
@@ -115,13 +134,24 @@ function App() {
 
           <Route
             path="/movies"
-            element={<ProtectedRoute loggedIn={isLoggedIn} element={Movies} />}
+            element={
+              <ProtectedRoute
+                loggedIn={isLoggedIn}
+                savedMovies={savedMovies}
+                setSavedMovies={setSavedMovies}
+                element={Movies}
+              />
+            }
           />
 
           <Route
             path="/saved-movies"
             element={
-              <ProtectedRoute loggedIn={isLoggedIn} element={SavedMovies} />
+              <ProtectedRoute
+                loggedIn={isLoggedIn}
+                savedMovies={savedMovies}
+                element={SavedMovies}
+              />
             }
           />
 
