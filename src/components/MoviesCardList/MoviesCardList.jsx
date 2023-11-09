@@ -18,18 +18,6 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", () => {
-      setTimeout(() => {
-        handleResize();
-      }, 700);
-    });
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
     const countMovies = filteredMovies.length;
     const countShorts = onlyShorts.length;
     const totalMovies = isShorts ? countShorts : countMovies;
@@ -50,21 +38,36 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
     maxShortsVisible,
   ]);
 
-  const handleResize = () => {
-    if (window.innerWidth > 1133) {
-      setMaxMoviesVisible(maxMovies_L_SIZE);
-      setMaxShortsVisible(maxMovies_L_SIZE);
-      setStep(step_L_SIZE);
-    } else if (window.innerWidth > 647) {
-      setMaxMoviesVisible(maxMovies_M_SIZE);
-      setMaxShortsVisible(maxMovies_M_SIZE);
-      setStep(step_M_SIZE);
-    } else if (window.innerWidth < 648) {
-      setMaxMoviesVisible(maxMovies_S_SIZE);
-      setMaxShortsVisible(maxMovies_S_SIZE);
-      setStep(step_S_SIZE);
-    }
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1133) {
+        setMaxMoviesVisible(maxMovies_L_SIZE);
+        setMaxShortsVisible(maxMovies_L_SIZE);
+        setStep(step_L_SIZE);
+      } else if (window.innerWidth > 647) {
+        setMaxMoviesVisible(maxMovies_M_SIZE);
+        setMaxShortsVisible(maxMovies_M_SIZE);
+        setStep(step_M_SIZE);
+      } else if (window.innerWidth < 648) {
+        setMaxMoviesVisible(maxMovies_S_SIZE);
+        setMaxShortsVisible(maxMovies_S_SIZE);
+        setStep(step_S_SIZE);
+      }
+      console.log(123);
+    };
+
+    handleResize();
+
+    const debouncedResize = setTimeout(() => {
+      window.addEventListener("resize", handleResize);
+    }, 700);
+
+    return () => {
+      clearTimeout(debouncedResize);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handleClickShowMoreMoviesBtn = () => {
     setMaxMoviesVisible((prevValue) => prevValue + step);
   };
