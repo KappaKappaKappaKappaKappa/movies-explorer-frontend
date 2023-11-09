@@ -42,17 +42,25 @@
   font-size    : 0.9375rem;
   font-weight  : 500;
   line-height  : 1.125rem;
+  width: 240px;
   white-space  : nowrap;
   overflow     : hidden;
   text-overflow: ellipsis;
+}
 
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .card__title {
+    width: 224px;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .card__title {
     font-size: 0.75rem;
+    width: 200px;
   }
 }
+
 
 .card__duration {
   color      : #8b8b8b;

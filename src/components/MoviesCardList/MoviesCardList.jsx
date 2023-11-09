@@ -18,25 +18,12 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1133) {
-        setMaxMoviesVisible(maxMovies_L_SIZE);
-        setMaxShortsVisible(maxMovies_L_SIZE);
-        setStep(step_L_SIZE);
-      } else if (window.innerWidth > 647) {
-        setMaxMoviesVisible(maxMovies_M_SIZE);
-        setMaxShortsVisible(maxMovies_M_SIZE);
-        setStep(step_M_SIZE);
-      } else if (window.innerWidth < 648) {
-        setMaxMoviesVisible(maxMovies_S_SIZE);
-        setMaxShortsVisible(maxMovies_S_SIZE);
-        setStep(step_S_SIZE);
-      }
-    };
-
     handleResize();
-    window.addEventListener("resize", handleResize);
-
+    window.addEventListener("resize", () => {
+      setTimeout(() => {
+        handleResize();
+      }, 700);
+    });
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -63,6 +50,21 @@ function MoviesCardList({ filteredMovies, onlyShorts, isShorts, isNoContent }) {
     maxShortsVisible,
   ]);
 
+  const handleResize = () => {
+    if (window.innerWidth > 1133) {
+      setMaxMoviesVisible(maxMovies_L_SIZE);
+      setMaxShortsVisible(maxMovies_L_SIZE);
+      setStep(step_L_SIZE);
+    } else if (window.innerWidth > 647) {
+      setMaxMoviesVisible(maxMovies_M_SIZE);
+      setMaxShortsVisible(maxMovies_M_SIZE);
+      setStep(step_M_SIZE);
+    } else if (window.innerWidth < 648) {
+      setMaxMoviesVisible(maxMovies_S_SIZE);
+      setMaxShortsVisible(maxMovies_S_SIZE);
+      setStep(step_S_SIZE);
+    }
+  };
   const handleClickShowMoreMoviesBtn = () => {
     setMaxMoviesVisible((prevValue) => prevValue + step);
   };
