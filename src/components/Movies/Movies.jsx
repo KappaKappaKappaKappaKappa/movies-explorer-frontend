@@ -49,7 +49,7 @@ function Movies({ savedMovies, setSavedMovies }) {
     deleteMovie(idDeletedMovie)
       .then((res) => {
         setSavedMovies((state) => {
-          state.filter((movie) => {
+          return state.filter((movie) => {
             return movie._id !== idDeletedMovie;
           });
         });

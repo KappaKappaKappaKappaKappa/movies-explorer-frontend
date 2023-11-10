@@ -117,7 +117,7 @@ function App() {
           console.log(error);
         });
     }
-  }, [isLoggedIn, currentUser]);
+  }, [isLoggedIn, savedMovies, currentUser]);
 
   return (
     <currentUserContext.Provider value={[currentUser, setCurrentUser]}>

@@ -17,6 +17,8 @@ function MoviesCard({
       })
     ) {
       setIsSavedCard(true);
+    } else {
+      setIsSavedCard(false);
     }
   }, [savedMovies, props.id]);
 
