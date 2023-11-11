@@ -5,13 +5,32 @@ import Preloader from "../Preloader/Preloader";
 import { getAllMovies } from "../../utils/MoviesApi";
 import { useEffect } from "react";
 import { saveMovie, deleteMovie } from "../../utils/MainApi";
+import {
+  maxMovies_L_SIZE,
+  step_L_SIZE,
+  maxMovies_M_SIZE,
+  step_M_SIZE,
+  maxMovies_S_SIZE,
+  step_S_SIZE,
+} from "../../utils/contains";
 
-function Movies({ savedMovies, setSavedMovies }) {
+function Movies({
+  savedMovies,
+  setSavedMovies,
+  isShorts,
+  setIsShorts,
+  handleToggleFilter,
+  isNoContent,
+  setIsNoContent,
+}) {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [onlyShorts, setOnlyShorts] = useState([]);
-  const [isShorts, setIsShorts] = useState(false);
-  const [isNoContent, setIsNoContent] = useState(false);
+
+  const [isBtnMoreActive, setIsBtnMoreActive] = useState(false);
+  const [maxMoviesVisible, setMaxMoviesVisible] = useState(0);
+  const [maxShortsVisible, setMaxShortsVisible] = useState(0);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     const filteredFilms = localStorage.getItem("filtered-movies");
@@ -75,7 +94,7 @@ function Movies({ savedMovies, setSavedMovies }) {
     setOnlyShorts(shortsFilms);
     localStorage.setItem("shorts-films", JSON.stringify(shortsFilms));
 
-    if (shortsFilms.length < 1 && filteredFilms.length < 1) {
+    if (filteredFilms.length < 1) {
       setIsNoContent(true);
     } else {
       setIsNoContent(false);
@@ -103,9 +122,62 @@ function Movies({ savedMovies, setSavedMovies }) {
     }
   };
 
-  const handleToggleFilter = () => {
-    setIsShorts(!isShorts);
-    localStorage.setItem("is-shorts", JSON.stringify(!isShorts));
+  useEffect(() => {
+    const countMovies = filteredMovies.length;
+    const countShorts = onlyShorts.length;
+    const totalMovies = isShorts ? countShorts : countMovies;
+
+    if (
+      (totalMovies > maxShortsVisible && isShorts) ||
+      (totalMovies > maxMoviesVisible && !isShorts)
+    ) {
+      setIsBtnMoreActive(true);
+    } else {
+      setIsBtnMoreActive(false);
+    }
+  }, [
+    maxMoviesVisible,
+    isShorts,
+    filteredMovies.length,
+    onlyShorts.length,
+    maxShortsVisible,
+  ]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1133) {
+        setMaxMoviesVisible(maxMovies_L_SIZE);
+        setMaxShortsVisible(maxMovies_L_SIZE);
+        setStep(step_L_SIZE);
+      } else if (window.innerWidth > 647) {
+        setMaxMoviesVisible(maxMovies_M_SIZE);
+        setMaxShortsVisible(maxMovies_M_SIZE);
+        setStep(step_M_SIZE);
+      } else if (window.innerWidth < 648) {
+        setMaxMoviesVisible(maxMovies_S_SIZE);
+        setMaxShortsVisible(maxMovies_S_SIZE);
+        setStep(step_S_SIZE);
+      }
+    };
+
+    handleResize();
+
+    const debouncedResize = setTimeout(() => {
+      window.addEventListener("resize", handleResize);
+    }, 700);
+
+    return () => {
+      clearTimeout(debouncedResize);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleClickShowMoreMoviesBtn = () => {
+    setMaxMoviesVisible((prevValue) => prevValue + step);
+  };
+
+  const handleClickShowMoreShortsBtn = () => {
+    setMaxShortsVisible((prevValue) => prevValue + step);
   };
 
   return (
@@ -117,6 +189,7 @@ function Movies({ savedMovies, setSavedMovies }) {
       />
       {isLoading && <Preloader />}
       <MoviesCardList
+        isBtnMoreActive={isBtnMoreActive}
         filteredMovies={filteredMovies}
         onlyShorts={onlyShorts}
         isShorts={isShorts}
@@ -124,6 +197,10 @@ function Movies({ savedMovies, setSavedMovies }) {
         handleSaveFilm={handleSaveFilm}
         handleDeleteSavedFilm={handleDeleteSavedFilm}
         savedMovies={savedMovies}
+        maxMoviesVisible={maxMoviesVisible}
+        maxShortsVisible={maxShortsVisible}
+        handleClickShowMoreMoviesBtn={handleClickShowMoreMoviesBtn}
+        handleClickShowMoreShortsBtn={handleClickShowMoreShortsBtn}
       />
     </main>
   );

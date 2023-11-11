@@ -24,6 +24,10 @@ function App() {
 
   const [savedMovies, setSavedMovies] = useState([]);
 
+  const [isShorts, setIsShorts] = useState(false);
+
+  const [isNoContent, setIsNoContent] = useState(false);
+
   const { pathname } = useLocation();
 
   const isHeaderVisible =
@@ -68,6 +72,11 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleToggleFilter = () => {
+    setIsShorts(!isShorts);
+    localStorage.setItem("is-shorts", JSON.stringify(!isShorts));
   };
 
   // Функция для logout
@@ -139,6 +148,11 @@ function App() {
                 loggedIn={isLoggedIn}
                 savedMovies={savedMovies}
                 setSavedMovies={setSavedMovies}
+                isShorts={isShorts}
+                setIsShorts={setIsShorts}
+                handleToggleFilter={handleToggleFilter}
+                isNoContent={isNoContent}
+                setIsNoContent={setIsNoContent}
                 element={Movies}
               />
             }
@@ -150,6 +164,8 @@ function App() {
               <ProtectedRoute
                 loggedIn={isLoggedIn}
                 savedMovies={savedMovies}
+                setSavedMovies={setSavedMovies}
+                handleToggleFilter={handleToggleFilter}
                 element={SavedMovies}
               />
             }

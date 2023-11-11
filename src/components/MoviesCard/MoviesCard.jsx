@@ -12,6 +12,7 @@ function MoviesCard({
 
   useEffect(() => {
     if (
+      savedMovies &&
       savedMovies.some((film) => {
         return film.movieId === props.id;
       })
@@ -58,7 +59,11 @@ function MoviesCard({
         <p className="card__duration">{converTime(props.duration)}</p>
       </div>
       <img
-        src={`https://api.nomoreparties.co/${props.image.url}`}
+        src={
+          pathname === "/saved-movies"
+            ? props.image
+            : `https://api.nomoreparties.co/${props.image.url}`
+        }
         alt="Картинка карточки"
         className="card__img"
       />
