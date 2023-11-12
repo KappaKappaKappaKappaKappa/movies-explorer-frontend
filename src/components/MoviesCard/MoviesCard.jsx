@@ -58,15 +58,23 @@ function MoviesCard({
         <h2 className="card__title">{props.nameRU}</h2>
         <p className="card__duration">{converTime(props.duration)}</p>
       </div>
-      <img
-        src={
-          pathname === "/saved-movies"
-            ? props.image
-            : `https://api.nomoreparties.co/${props.image.url}`
-        }
-        alt="Картинка карточки"
-        className="card__img"
-      />
+      <a
+        className="card__link"
+        href={props.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {" "}
+        <img
+          src={
+            pathname === "/saved-movies"
+              ? props.image
+              : `https://api.nomoreparties.co/${props.image.url}`
+          }
+          alt={`Постер фильма ${props.nameRU}`}
+          className="card__img"
+        />
+      </a>
       {pathname === "/movies" && !isSavedCard && (
         <button className="card__save-btn" onClick={handleClickSaveBtnCard}>
           Сохранить
