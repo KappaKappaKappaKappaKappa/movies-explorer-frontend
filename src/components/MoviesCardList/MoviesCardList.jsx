@@ -14,8 +14,6 @@ function MoviesCardList({
   maxShortsVisible,
   handleClickShowMoreMoviesBtn,
   handleClickShowMoreShortsBtn,
-  savedMoviesForRender,
-  onlyShortsForRender,
 }) {
   const { pathname } = useLocation();
 
@@ -26,8 +24,8 @@ function MoviesCardList({
           <p className="cards-list__not-found-message">Ничего не найдено!</p>
         )}
         {(isShorts
-          ? onlyShorts || onlyShortsForRender
-          : filteredMovies || savedMoviesForRender
+          ? onlyShorts
+          : filteredMovies
         )
           .slice(0, isShorts ? maxShortsVisible : maxMoviesVisible)
           .map((movie) => {

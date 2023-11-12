@@ -164,8 +164,11 @@ function App() {
               <ProtectedRoute
                 loggedIn={isLoggedIn}
                 savedMovies={savedMovies}
+                isShorts={isShorts}
                 setSavedMovies={setSavedMovies}
                 handleToggleFilter={handleToggleFilter}
+                isNoContent={isNoContent}
+                setIsNoContent={setIsNoContent}
                 element={SavedMovies}
               />
             }

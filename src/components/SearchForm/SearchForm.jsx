@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { useLocation } from "react-router-dom";
 
 function SearchForm({ handleSubmitSearchForm, handleToggleFilter, isShorts }) {
+  const { pathname } = useLocation();
   const [inputValid, setInputValid] = useState(true);
 
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const keyword = localStorage.getItem("keyword");
-    if (keyword) {
+    if (pathname === "/movies" && keyword) {
       setInputValue(keyword);
     }
-  }, []);
+  }, [pathname]);
 
   const handleChangeInputValue = (e) => {
     const value = e.target.value;
@@ -26,9 +28,10 @@ function SearchForm({ handleSubmitSearchForm, handleToggleFilter, isShorts }) {
       setInputValid(false);
     } else {
       handleSubmitSearchForm(inputValue);
-      localStorage.setItem("keyword", inputValue);
+      pathname === "/movies" && localStorage.setItem("keyword", inputValue);
     }
   };
+
   return (
     <section className="search">
       <form

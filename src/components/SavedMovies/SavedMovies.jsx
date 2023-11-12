@@ -4,18 +4,27 @@ import { useEffect, useState } from "react";
 import { deleteMovie } from "../../utils/MainApi";
 
 function SavedMovies({
-  isLoggedIn,
   savedMovies,
   setSavedMovies,
   isShorts,
-  setIsShorts,
+  handleToggleFilter,
+  isNoContent,
+  setIsNoContent,
 }) {
   const [savedMoviesForRender, setSavedMoviesForRender] = useState(savedMovies);
   const [onlyShortsForRender, setOnlyShortsForRender] = useState([]);
 
   useEffect(() => {
     setSavedMoviesForRender(savedMovies);
-  }, [savedMovies]);
+
+    setOnlyShortsForRender(
+      savedMovies.filter((movie) => {
+        return movie.duration < 40;
+      })
+    );
+
+    setIsNoContent(false);
+  }, [savedMovies, setIsNoContent]);
 
   const handleDeleteSavedFilm = (movieId) => {
     deleteMovie(movieId)
@@ -37,13 +46,19 @@ function SavedMovies({
       });
   };
 
-  const submitHandler = (movies, keyword) => {
-    const filteredSavedFilms = movies.filter((film) => {
+  const handleSubmitSearchForm = (keyword) => {
+    const filteredSavedFilms = savedMovies.filter((film) => {
       return film.nameRU.toLowerCase().includes(keyword.toLowerCase());
     });
     setSavedMoviesForRender(filteredSavedFilms);
 
-    const filteredSavedShorts = movies.filter((short) => {
+    if (filteredSavedFilms.length < 1) {
+      setIsNoContent(true);
+    } else {
+      setIsNoContent(false);
+    }
+
+    const filteredSavedShorts = savedMovies.filter((short) => {
       return (
         short.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
         short.duration <= 40
@@ -54,11 +69,17 @@ function SavedMovies({
 
   return (
     <main className="saved-movies">
-      <SearchForm submitHandler={submitHandler} />
+      <SearchForm
+        handleSubmitSearchForm={handleSubmitSearchForm}
+        isShorts={isShorts}
+        handleToggleFilter={handleToggleFilter}
+      />
       <MoviesCardList
-        savedMoviesForRender={savedMoviesForRender}
-        onlyShortsForRender={onlyShortsForRender}
+        filteredMovies={savedMoviesForRender}
+        onlyShorts={onlyShortsForRender}
         handleDeleteSavedFilm={handleDeleteSavedFilm}
+        isShorts={isShorts}
+        isNoContent={isNoContent}
       />
     </main>
   );

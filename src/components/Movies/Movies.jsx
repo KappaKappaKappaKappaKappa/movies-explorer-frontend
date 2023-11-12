@@ -38,6 +38,14 @@ function Movies({
       setFilteredMovies(JSON.parse(filteredFilms));
     }
 
+    if (filteredFilms && JSON.parse(filteredFilms).length > 0) {
+      setIsNoContent(false);
+    } else if (!filteredFilms) {
+      setIsNoContent(false);
+    } else {
+      setIsNoContent(true);
+    }
+
     const shortsFilms = localStorage.getItem("shorts-films");
     if (shortsFilms) {
       setOnlyShorts(JSON.parse(shortsFilms));
@@ -47,7 +55,7 @@ function Movies({
     if (shortsStatus) {
       setIsShorts(JSON.parse(shortsStatus));
     }
-  }, []);
+  }, [setIsNoContent, setIsShorts]);
 
   const handleSaveFilm = (movie) => {
     saveMovie(movie)
@@ -179,7 +187,6 @@ function Movies({
   const handleClickShowMoreShortsBtn = () => {
     setMaxShortsVisible((prevValue) => prevValue + step);
   };
-
   return (
     <main className="movies">
       <SearchForm
