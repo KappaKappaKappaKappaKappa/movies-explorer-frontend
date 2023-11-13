@@ -12,7 +12,6 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
-import * as JwtToken from "../../utils/token.js";
 import * as MainApi from "../../utils/MainApi.js";
 
 function App() {
@@ -53,7 +52,7 @@ function App() {
       .handleLoginUser(email, password)
       .then((data) => {
         if (data.token) {
-          JwtToken.saveToken(data.token);
+          localStorage.setItem("jwt", data.token);
           setIsLoggedIn(true);
           navigate("/movies");
         }
@@ -202,7 +201,15 @@ function App() {
             }
           />
 
-          <Route path="/signin" element={<Login handleLogin={loginUser} loginErrorMessage={loginErrorMessage} />} />
+          <Route
+            path="/signin"
+            element={
+              <Login
+                handleLogin={loginUser}
+                loginErrorMessage={loginErrorMessage}
+              />
+            }
+          />
 
           <Route
             path="/signup"

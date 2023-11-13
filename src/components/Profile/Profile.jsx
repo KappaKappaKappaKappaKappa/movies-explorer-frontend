@@ -29,7 +29,7 @@ function Profile({ handleLogout }) {
     setIsRedactorMode(true);
   };
 
-  //Подгрузка данных пользователя с сервера
+  //Подгрузка данных пользователя
   useEffect(() => {
     setName(currentUser.data.name);
     setEmail(currentUser.data.email);
