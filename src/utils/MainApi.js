@@ -3,7 +3,7 @@ const headers = {
 };
 
 // const BASE_URL = "http://localhost:3000";
-const BASE_URL = "http://api.mov.explorer.nomoredomainsrocks.ru";
+const BASE_URL = "https://api.mov.explorer.nomoredomainsrocks.ru";
 
 const checkResponse = (res) => {
   if (res.ok) {
