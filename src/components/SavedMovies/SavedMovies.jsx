@@ -11,6 +11,7 @@ function SavedMovies({
   isNoContent,
   setIsNoContent,
 }) {
+  const token = localStorage.getItem("jwt");
   const [savedMoviesForRender, setSavedMoviesForRender] = useState(savedMovies);
   const [onlyShortsForRender, setOnlyShortsForRender] = useState([]);
 
@@ -27,7 +28,7 @@ function SavedMovies({
   }, [savedMovies, setIsNoContent]);
 
   const handleDeleteSavedFilm = (movieId) => {
-    deleteMovie(movieId)
+    deleteMovie(movieId, token)
       .then((res) => {
         setSavedMovies((state) => {
           return state.filter((m) => {

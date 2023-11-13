@@ -23,6 +23,7 @@ function Movies({
   isNoContent,
   setIsNoContent,
 }) {
+  const token = localStorage.getItem("jwt");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [onlyShorts, setOnlyShorts] = useState([]);
@@ -58,7 +59,7 @@ function Movies({
   }, [setIsNoContent, setIsShorts]);
 
   const handleSaveFilm = (movie) => {
-    saveMovie(movie)
+    saveMovie(movie, token)
       .then((data) => {
         setSavedMovies([data.data, ...savedMovies]);
       })
@@ -73,7 +74,7 @@ function Movies({
     });
     const idDeletedMovie = deletedMovie._id;
 
-    deleteMovie(idDeletedMovie)
+    deleteMovie(idDeletedMovie, token)
       .then((res) => {
         setSavedMovies((state) => {
           return state.filter((movie) => {

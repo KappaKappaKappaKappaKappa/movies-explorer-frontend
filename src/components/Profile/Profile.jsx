@@ -3,6 +3,7 @@ import currentUserContext from "../../contexts/currentUserContext";
 import { updateUserInfo } from "../../utils/MainApi";
 
 function Profile({ handleLogout }) {
+  const token = localStorage.getItem("jwt");
   //Подключение контекста currentUser в компонент
   const [currentUser, setCurrentUser] = React.useContext(currentUserContext);
 
@@ -61,7 +62,7 @@ function Profile({ handleLogout }) {
   //Обработка отправки формы. Посылается запрос на сервер с новыми данными, в ответ получаем объект с обновленными данными. Обновляем стейт name и email, а так же данные пользователя в контексте. Завершаем оработку отключением кнопки сохранения и режима редактирования.
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUserInfo({ name: name, email: email })
+    updateUserInfo({ name: name, email: email }, token)
       .then((userData) => {
         setName(userData.data.name);
         setEmail(userData.data.email);

@@ -15,6 +15,8 @@ import * as auth from "../../utils/auth.js";
 import * as MainApi from "../../utils/MainApi.js";
 
 function App() {
+  const token = localStorage.getItem("jwt");
+
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
@@ -55,6 +57,7 @@ function App() {
           localStorage.setItem("jwt", data.token);
           setIsLoggedIn(true);
           navigate("/movies");
+          setLoginErrorMessage("");
         }
       })
       .catch((error) => {
@@ -76,6 +79,7 @@ function App() {
       .then((res) => {
         if (res._id) {
           loginUser(email, password);
+          setRegisterErrorMessage("");
         }
       })
       .catch((error) => {
@@ -106,7 +110,7 @@ function App() {
   // Эффект получает данные о пользователе с сервера и устанавливает контекст currentUser
   useEffect(() => {
     if (isLoggedIn) {
-      MainApi.getUserInfo()
+      MainApi.getUserInfo(token)
         .then((data) => {
           setCurrentUser(data);
         })
@@ -114,23 +118,22 @@ function App() {
           console.log(error);
         });
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, token]);
 
   // Эффект для проверки токена при заходе на сайт или обновления страницы
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
     if (token) {
       setIsLoggedIn(true);
       if (pathname === "/signup" || pathname === "/signin") {
         navigate("/movies");
       }
     }
-  }, [isLoggedIn, pathname, navigate]);
+  }, [isLoggedIn, pathname, navigate, token]);
 
   //Проверяем есть ли данные о CurrentUser. Если да - загружаем сохраненные пользователем фильмы
   useEffect(() => {
     if (isLoggedIn && currentUser.data && currentUser.data._id) {
-      MainApi.getSavedMovies()
+      MainApi.getSavedMovies(token)
         .then((data) => {
           const ownSavedMovies = data.data.filter((movie) => {
             return movie.owner === currentUser.data._id;
@@ -142,7 +145,7 @@ function App() {
           console.log(error);
         });
     }
-  }, [isLoggedIn, currentUser]);
+  }, [isLoggedIn, currentUser, token]);
 
   return (
     <currentUserContext.Provider value={[currentUser, setCurrentUser]}>

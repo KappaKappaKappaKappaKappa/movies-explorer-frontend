@@ -4,8 +4,6 @@ const headers = {
 
 const BASE_URL = "http://localhost:3000";
 
-const token = localStorage.getItem("jwt");
-
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -13,7 +11,7 @@ const checkResponse = (res) => {
   return Promise.reject(res);
 };
 
-export const getUserInfo = () => {
+export const getUserInfo = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
@@ -23,7 +21,7 @@ export const getUserInfo = () => {
   }).then(checkResponse);
 };
 
-export const updateUserInfo = (data) => {
+export const updateUserInfo = (data, token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
@@ -37,7 +35,7 @@ export const updateUserInfo = (data) => {
   }).then(checkResponse);
 };
 
-export const saveMovie = (movie) => {
+export const saveMovie = (movie, token) => {
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -50,7 +48,7 @@ export const saveMovie = (movie) => {
   }).then(checkResponse);
 };
 
-export const deleteMovie = (movieId) => {
+export const deleteMovie = (movieId, token) => {
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: "DELETE",
     headers: {
@@ -60,7 +58,7 @@ export const deleteMovie = (movieId) => {
   }).then(checkResponse);
 };
 
-export const getSavedMovies = () => {
+export const getSavedMovies = (token) => {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: {
