@@ -28,6 +28,9 @@ function App() {
 
   const [isNoContent, setIsNoContent] = useState(false);
 
+  const [registerErrorMessage, setRegisterErrorMessage] = useState("");
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
+
   const { pathname } = useLocation();
 
   const isHeaderVisible =
@@ -57,6 +60,13 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        if (error.status === 400) {
+          setLoginErrorMessage("Вы ввели неправильный логин или пароль.");
+        } else if (error.status === 401) {
+          setLoginErrorMessage(
+            "При авторизации произошла ошибка. Переданный токен некорректен."
+          );
+        }
       });
   };
 
@@ -71,6 +81,13 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        if (error.status === 409) {
+          setRegisterErrorMessage("Пользователь с таким email уже существует.");
+        } else {
+          setRegisterErrorMessage(
+            "При регистрации пользователя произошла ошибка."
+          );
+        }
       });
   };
 
@@ -185,11 +202,16 @@ function App() {
             }
           />
 
-          <Route path="/signin" element={<Login handleLogin={loginUser} />} />
+          <Route path="/signin" element={<Login handleLogin={loginUser} loginErrorMessage={loginErrorMessage} />} />
 
           <Route
             path="/signup"
-            element={<Register handleRegister={registerUser} />}
+            element={
+              <Register
+                handleRegister={registerUser}
+                registerErrorMessage={registerErrorMessage}
+              />
+            }
           />
 
           <Route path="*" element={<NotFound />} />

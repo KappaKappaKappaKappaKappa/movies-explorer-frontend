@@ -2,7 +2,7 @@ import { useFormValidation } from "../../hooks/useFormValidation";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
-function Register({ handleRegister }) {
+function Register({ handleRegister, registerErrorMessage }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation({});
 
@@ -92,6 +92,9 @@ function Register({ handleRegister }) {
             </span>
           </div>
         </div>
+        <span className="login-register__submit-error-message">
+          {registerErrorMessage}
+        </span>
         <button
           className={
             isValid

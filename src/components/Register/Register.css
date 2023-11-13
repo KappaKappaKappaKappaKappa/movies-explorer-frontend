@@ -52,13 +52,12 @@
 .login-register__inputs-container {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 134px;
+  margin-bottom: 104px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .login-register__inputs-container {
-    margin-bottom: 222px;
+    margin-bottom: 192px;
   }
 }
 
@@ -138,9 +137,18 @@
 
 .login-register__error-message {
   color: #ee3465;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   height: 24px;
+}
+
+.login-register__submit-error-message {
+  display: block;
+  color: #ee3465;
+  font-size: 0.625rem;
+  font-weight: 400;
+  height: 24px;
+  text-align: center;
 }
 
 .login-register__login-text {
