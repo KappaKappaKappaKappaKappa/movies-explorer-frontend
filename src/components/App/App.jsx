@@ -184,6 +184,7 @@ function App() {
                 loggedIn={isLoggedIn}
                 savedMovies={savedMovies}
                 isShorts={isShorts}
+                setIsShorts={setIsShorts}
                 setSavedMovies={setSavedMovies}
                 handleToggleFilter={handleToggleFilter}
                 isNoContent={isNoContent}

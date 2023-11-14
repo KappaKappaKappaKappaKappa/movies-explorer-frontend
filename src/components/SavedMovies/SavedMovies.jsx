@@ -7,6 +7,7 @@ function SavedMovies({
   savedMovies,
   setSavedMovies,
   isShorts,
+  setIsShorts,
   handleToggleFilter,
   isNoContent,
   setIsNoContent,
@@ -23,9 +24,10 @@ function SavedMovies({
         return movie.duration < 40;
       })
     );
+    setIsShorts(false);
 
     setIsNoContent(false);
-  }, [savedMovies, setIsNoContent]);
+  }, [savedMovies, setIsNoContent, setIsShorts]);
 
   const handleDeleteSavedFilm = (movieId) => {
     deleteMovie(movieId, token)
