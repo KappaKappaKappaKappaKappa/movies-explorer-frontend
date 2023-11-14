@@ -13,6 +13,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
 import * as MainApi from "../../utils/MainApi.js";
+import Preloader from "../Preloader/Preloader.jsx";
 
 function App() {
   const token = localStorage.getItem("jwt");
@@ -33,6 +34,8 @@ function App() {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
 
   const { pathname } = useLocation();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const isHeaderVisible =
     pathname === "/" ||
@@ -107,23 +110,32 @@ function App() {
     navigate("/");
   };
 
-  // Эффект получает данные о пользователе с сервера и устанавливает контекст currentUser
+  // // Эффект получает данные о пользователе с сервера и устанавливает контекст currentUser
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     MainApi.getUserInfo(token)
+  //       .then((data) => {
+  //         setCurrentUser(data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }, [isLoggedIn, token]);
+
+  // Эффект для проверки токена при заходе на сайт или обновления страницы
   useEffect(() => {
-    if (isLoggedIn) {
+    setIsLoading(true);
+    if (token) {
+      setIsLoggedIn(true);
       MainApi.getUserInfo(token)
         .then((data) => {
           setCurrentUser(data);
         })
         .catch((error) => {
           console.log(error);
-        });
-    }
-  }, [isLoggedIn, token]);
-
-  // Эффект для проверки токена при заходе на сайт или обновления страницы
-  useEffect(() => {
-    if (token) {
-      setIsLoggedIn(true);
+        })
+        .finally(() => setIsLoading(false));
       if (pathname === "/signup" || pathname === "/signin") {
         navigate("/movies");
       }
@@ -147,7 +159,9 @@ function App() {
     }
   }, [isLoggedIn, currentUser, token]);
 
-  return (
+  return isLoading ? (
+    <Preloader />
+  ) : (
     <currentUserContext.Provider value={[currentUser, setCurrentUser]}>
       <section className="app">
         {isHeaderVisible && (

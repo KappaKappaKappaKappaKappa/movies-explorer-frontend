@@ -35,9 +35,6 @@ function SavedMovies({
     );
   }, []);
 
-  console.log({ movies: savedMoviesForRender });
-  console.log({ shorts: onlyShortsForRender });
-
   const handleDeleteSavedFilm = (movieId) => {
     deleteMovie(movieId, token)
       .then((res) => {
