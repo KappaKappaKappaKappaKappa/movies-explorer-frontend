@@ -43,13 +43,12 @@ function MoviesCard({
       thumbnail: `https://api.nomoreparties.co/${props.image.formats.thumbnail.url}`,
       movieId: props.id,
     };
-    handleSaveFilm(movieData);
-    setIsSavedCard(true);
+    handleSaveFilm(movieData, setIsSavedCard);
   };
 
   const handleClickRemoveBtnCard = () => {
-    handleDeleteSavedFilm(props.id || props._id);
-    setIsSavedCard(false);
+    handleDeleteSavedFilm(props.id || props._id, setIsSavedCard);
+    
   };
 
   return (
