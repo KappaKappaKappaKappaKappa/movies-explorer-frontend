@@ -13,24 +13,30 @@ function SavedMovies({
   setIsNoContent,
 }) {
   const token = localStorage.getItem("jwt");
-  const [savedMoviesForRender, setSavedMoviesForRender] = useState(savedMovies);
+  const [savedMoviesForRender, setSavedMoviesForRender] = useState([]);
   const [onlyShortsForRender, setOnlyShortsForRender] = useState([]);
+
+  const [originalSavedMovies, setOriginalSavedMovies] = useState([]);
 
   useEffect(() => {
     setIsShorts(false);
-  }, [setIsShorts]);
+    setIsNoContent(false);
+  }, [setIsShorts, setIsNoContent]);
 
   useEffect(() => {
     setSavedMoviesForRender(savedMovies);
+
+    setOriginalSavedMovies(savedMovies);
 
     setOnlyShortsForRender(
       savedMovies.filter((movie) => {
         return movie.duration < 40;
       })
     );
+  }, []);
 
-    setIsNoContent(false);
-  }, [savedMovies, setIsNoContent, setIsShorts]);
+  console.log({ movies: savedMoviesForRender });
+  console.log({ shorts: onlyShortsForRender });
 
   const handleDeleteSavedFilm = (movieId) => {
     deleteMovie(movieId, token)
@@ -46,14 +52,27 @@ function SavedMovies({
             return m._id !== movieId;
           });
         });
+
+        setOnlyShortsForRender((state) => {
+          return state.filter((s) => {
+            return s._id !== movieId;
+          });
+        });
+
+        setOriginalSavedMovies((state) => {
+          return state.filter((m) => {
+            return m._id !== movieId;
+          });
+        });
       })
+
       .catch((error) => {
         console.log(error);
       });
   };
 
   const handleSubmitSearchForm = (keyword) => {
-    const filteredSavedFilms = savedMovies.filter((film) => {
+    const filteredSavedFilms = originalSavedMovies.filter((film) => {
       return film.nameRU.toLowerCase().includes(keyword.toLowerCase());
     });
     setSavedMoviesForRender(filteredSavedFilms);
@@ -64,7 +83,7 @@ function SavedMovies({
       setIsNoContent(false);
     }
 
-    const filteredSavedShorts = savedMovies.filter((short) => {
+    const filteredSavedShorts = originalSavedMovies.filter((short) => {
       return (
         short.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
         short.duration <= 40
