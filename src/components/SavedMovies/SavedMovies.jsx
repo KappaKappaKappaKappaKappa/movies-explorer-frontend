@@ -17,6 +17,10 @@ function SavedMovies({
   const [onlyShortsForRender, setOnlyShortsForRender] = useState([]);
 
   useEffect(() => {
+    setIsShorts(false);
+  }, [setIsShorts]);
+
+  useEffect(() => {
     setSavedMoviesForRender(savedMovies);
 
     setOnlyShortsForRender(
@@ -24,7 +28,6 @@ function SavedMovies({
         return movie.duration < 40;
       })
     );
-    setIsShorts(false);
 
     setIsNoContent(false);
   }, [savedMovies, setIsNoContent, setIsShorts]);
