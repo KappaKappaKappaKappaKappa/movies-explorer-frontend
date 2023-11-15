@@ -3,6 +3,7 @@ import currentUserContext from "../../contexts/currentUserContext";
 import { updateUserInfo } from "../../utils/MainApi";
 
 function Profile({ handleLogout }) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const token = localStorage.getItem("jwt");
   //Подключение контекста currentUser в компонент
   const [currentUser, setCurrentUser] = React.useContext(currentUserContext);
@@ -56,7 +57,9 @@ function Profile({ handleLogout }) {
   const handleEmailChange = (e) => {
     const input = e.target;
     setEmail(input.value);
-    setIsInputEmailValid(input.validity.valid);
+    const checkValidEmail = emailRegex.test(input);
+
+    setIsInputEmailValid(checkValidEmail);
   };
 
   //Обработка отправки формы. Посылается запрос на сервер с новыми данными, в ответ получаем объект с обновленными данными. Обновляем стейт name и email, а так же данные пользователя в контексте. Завершаем оработку отключением кнопки сохранения и режима редактирования.
@@ -107,7 +110,7 @@ function Profile({ handleLogout }) {
             E-mail
           </label>
           <input
-            type="email"
+            type="text"
             className="form__input"
             placeholder="Тут должен быть ваш email"
             value={email || ""}

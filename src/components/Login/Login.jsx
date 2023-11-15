@@ -29,7 +29,7 @@ function Login({ handleLogin, loginErrorMessage }) {
               E-mail
             </label>
             <input
-              type="email"
+              type="text"
               name="email"
               className={
                 errors.email

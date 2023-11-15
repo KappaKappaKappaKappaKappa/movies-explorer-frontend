@@ -51,12 +51,12 @@ function Register({ handleRegister, registerErrorMessage }) {
               E-mail
             </label>
             <input
-              type="email"
+              type="text"
               name="email"
               className={
                 errors.email
-                  ? "login-register__input login-register__input_error"
-                  : "login-register__input"
+                ? "login-register__input login-register__input_error"
+                : "login-register__input"
               }
               value={values.email || ""}
               onChange={handleChange}
