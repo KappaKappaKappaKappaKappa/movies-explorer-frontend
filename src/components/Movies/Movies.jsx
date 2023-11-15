@@ -6,12 +6,12 @@ import { getAllMovies } from "../../utils/MoviesApi";
 import { useEffect } from "react";
 import { saveMovie, deleteMovie } from "../../utils/MainApi";
 import {
-  maxMovies_L_SIZE,
-  step_L_SIZE,
-  maxMovies_M_SIZE,
-  step_M_SIZE,
-  maxMovies_S_SIZE,
-  step_S_SIZE,
+  MAXMOVIES_L_SIZE,
+  STEP_L_SIZE,
+  MAXMOVIES_M_SIZE,
+  STEP_M_SIZE,
+  MAXMOVIES_S_SIZE,
+  STEP_S_SIZE,
 } from "../../utils/contains";
 
 function Movies({
@@ -62,7 +62,7 @@ function Movies({
     saveMovie(movie, token)
       .then((data) => {
         setSavedMovies([data.data, ...savedMovies]);
-        setIsSavedCard(true)
+        setIsSavedCard(true);
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +82,7 @@ function Movies({
             return movie._id !== idDeletedMovie;
           });
         });
-        setIsSavedCard(false)
+        setIsSavedCard(false);
       })
       .catch((error) => {
         console.log(error);
@@ -157,17 +157,17 @@ function Movies({
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1133) {
-        setMaxMoviesVisible(maxMovies_L_SIZE);
-        setMaxShortsVisible(maxMovies_L_SIZE);
-        setStep(step_L_SIZE);
+        setMaxMoviesVisible(MAXMOVIES_L_SIZE);
+        setMaxShortsVisible(MAXMOVIES_L_SIZE);
+        setStep(STEP_L_SIZE);
       } else if (window.innerWidth > 647) {
-        setMaxMoviesVisible(maxMovies_M_SIZE);
-        setMaxShortsVisible(maxMovies_M_SIZE);
-        setStep(step_M_SIZE);
+        setMaxMoviesVisible(MAXMOVIES_M_SIZE);
+        setMaxShortsVisible(MAXMOVIES_M_SIZE);
+        setStep(STEP_M_SIZE);
       } else if (window.innerWidth < 648) {
-        setMaxMoviesVisible(maxMovies_S_SIZE);
-        setMaxShortsVisible(maxMovies_S_SIZE);
-        setStep(step_S_SIZE);
+        setMaxMoviesVisible(MAXMOVIES_S_SIZE);
+        setMaxShortsVisible(MAXMOVIES_S_SIZE);
+        setStep(STEP_S_SIZE);
       }
     };
 

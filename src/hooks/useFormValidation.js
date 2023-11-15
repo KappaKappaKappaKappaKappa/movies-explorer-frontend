@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
+import { EMAIL_REGEX } from "../utils/contains";
 
 export function useFormValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
-
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleChange = (e) => {
     const { name } = e.target;
@@ -14,7 +13,7 @@ export function useFormValidation() {
     setValues({ ...values, [name]: value });
 
     if (name === "email") {
-      const isValidEmail = emailRegex.test(value);
+      const isValidEmail = EMAIL_REGEX.test(value);
       setErrors({
         ...errors,
         [name]: isValidEmail ? "" : "Некорректный адрес электронной почты",
@@ -26,7 +25,7 @@ export function useFormValidation() {
 
   useEffect(() => {
     const formValid = document.querySelector("form").checkValidity();
-    const isEmailValid = emailRegex.test(values.email);
+    const isEmailValid = EMAIL_REGEX.test(values.email);
     const isNameValid = "name" in values ? values.name.trim().length > 0 : true;
 
     setIsValid(

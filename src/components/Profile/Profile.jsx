@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import currentUserContext from "../../contexts/currentUserContext";
 import { updateUserInfo } from "../../utils/MainApi";
+import { EMAIL_REGEX } from "../../utils/contains";
 
 function Profile({ handleLogout }) {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const token = localStorage.getItem("jwt");
   //Подключение контекста currentUser в компонент
   const [currentUser, setCurrentUser] = React.useContext(currentUserContext);
@@ -57,7 +57,7 @@ function Profile({ handleLogout }) {
   const handleEmailChange = (e) => {
     const input = e.target;
     setEmail(input.value);
-    const checkValidEmail = emailRegex.test(input.value);
+    const checkValidEmail = EMAIL_REGEX.test(input.value);
 
     setIsInputEmailValid(checkValidEmail);
   };

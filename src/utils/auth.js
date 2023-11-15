@@ -1,5 +1,7 @@
-// const BASE_URL = "http://localhost:3000";
-const BASE_URL = "https://api.mov.explorer.nomoredomainsrocks.ru";
+import { SERVER_URL, HOST_URL } from "./contains";
+
+const BASE_URL = HOST_URL;
+// const BASE_URL = SERVER_URL;
 
 const headers = {
   "Content-Type": "application/json",
