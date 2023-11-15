@@ -50,14 +50,14 @@ function Profile({ handleLogout }) {
   const handleNameChange = (e) => {
     const input = e.target;
     setName(input.value);
-    setIsInputNameValid(input.validity.valid);
+    setIsInputNameValid(input.validity.valid && input.value);
   };
 
   //Обновление стейта email при вводе нового значения email
   const handleEmailChange = (e) => {
     const input = e.target;
     setEmail(input.value);
-    const checkValidEmail = emailRegex.test(input);
+    const checkValidEmail = emailRegex.test(input.value);
 
     setIsInputEmailValid(checkValidEmail);
   };

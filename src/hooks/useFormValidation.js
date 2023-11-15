@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 export function useFormValidation() {
   const [values, setValues] = useState({});
@@ -15,24 +15,24 @@ export function useFormValidation() {
 
     if (name === "email") {
       const isValidEmail = emailRegex.test(value);
-      setErrors({ ...errors, [name]: isValidEmail ? "" : "Некорректный адрес электронной почты" });
+      setErrors({
+        ...errors,
+        [name]: isValidEmail ? "" : "Некорректный адрес электронной почты",
+      });
     } else {
       setErrors({ ...errors, [name]: e.target.validationMessage });
     }
-
-    setIsValid(e.target.closest("form").checkValidity());
   };
 
-  const checkValidity = () => {
-    const isEmailValid = emailRegex.test(values.email || "");
-    const isFormValid = Object.values(errors).every((error) => error === "") &&
-                        Object.values(values).every((value) => value !== "") &&
-                        isEmailValid;
-
-    setIsValid(isFormValid);
-
-    return isFormValid;
-  };
+  useEffect(() => {
+    const isEmailValid = emailRegex.test(values.email);
+    const isNameValid = values.name;
+    setIsValid(
+      Object.values(errors).every((error) => !error) &&
+        isEmailValid &&
+        isNameValid
+    );
+  }, [values, errors]);
 
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
@@ -48,7 +48,6 @@ export function useFormValidation() {
     errors,
     isValid,
     handleChange,
-    checkValidity, // добавлен новый метод
     resetForm,
   };
 }
