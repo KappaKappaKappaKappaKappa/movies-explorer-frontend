@@ -25,10 +25,13 @@ export function useFormValidation() {
   };
 
   useEffect(() => {
+    const formValid = document.querySelector("form").checkValidity();
     const isEmailValid = emailRegex.test(values.email);
-    const isNameValid = values.name;
+    const isNameValid = "name" in values ? values.name.trim().length > 0 : true;
+
     setIsValid(
-      Object.values(errors).every((error) => !error) &&
+      formValid &&
+        Object.values(errors).every((error) => !error) &&
         isEmailValid &&
         isNameValid
     );
