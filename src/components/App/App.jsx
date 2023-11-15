@@ -14,29 +14,32 @@ import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
 import * as MainApi from "../../utils/MainApi.js";
 import Preloader from "../Preloader/Preloader.jsx";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 function App() {
   const token = localStorage.getItem("jwt");
-
+  
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
-
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
-
+  
   const [savedMovies, setSavedMovies] = useState([]);
-
+  
   const [isShorts, setIsShorts] = useState(false);
-
+  
   const [isNoContent, setIsNoContent] = useState(false);
-
+  
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
-
+  
   const { pathname } = useLocation();
-
+  
   const [isLoading, setIsLoading] = useState(true);
-
+  
+  const { resetForm } = useFormValidation;
+  
   const isHeaderVisible =
     pathname === "/" ||
     pathname === "/movies" ||
@@ -61,6 +64,7 @@ function App() {
           setIsLoggedIn(true);
           navigate("/movies");
           setLoginErrorMessage("");
+          resetForm();
         }
       })
       .catch((error) => {
@@ -83,6 +87,7 @@ function App() {
         if (res._id) {
           loginUser(email, password);
           setRegisterErrorMessage("");
+          resetForm();
         }
       })
       .catch((error) => {
@@ -119,7 +124,6 @@ function App() {
 
   // Эффект для проверки токена при заходе на сайт или обновления страницы
   useEffect(() => {
-
     if (token) {
       setIsLoggedIn(true);
       MainApi.getUserInfo(token)

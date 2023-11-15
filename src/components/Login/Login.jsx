@@ -3,13 +3,11 @@ import logo from "../../images/logo.svg";
 import { useFormValidation } from "../../hooks/useFormValidation";
 
 function Login({ handleLogin, loginErrorMessage }) {
-  const { values, errors, isValid, handleChange, resetForm } =
-    useFormValidation({});
+  const { values, errors, isValid, handleChange } = useFormValidation({});
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     handleLogin(values.email, values.password);
-    resetForm();
   };
 
   return (

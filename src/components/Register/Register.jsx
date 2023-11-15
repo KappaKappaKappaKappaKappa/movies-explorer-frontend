@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
 function Register({ handleRegister, registerErrorMessage }) {
-  const { values, errors, isValid, handleChange, resetForm } =
-    useFormValidation({});
+  const { values, errors, isValid, handleChange } = useFormValidation({});
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     handleRegister(values.name, values.email, values.password);
-    resetForm();
   };
 
   return (
