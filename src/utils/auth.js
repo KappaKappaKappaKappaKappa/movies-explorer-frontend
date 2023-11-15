@@ -1,7 +1,7 @@
 import { SERVER_URL, HOST_URL } from "./contains";
 
-const BASE_URL = HOST_URL;
-// const BASE_URL = SERVER_URL;
+// const BASE_URL = HOST_URL;
+const BASE_URL = SERVER_URL;
 
 const headers = {
   "Content-Type": "application/json",

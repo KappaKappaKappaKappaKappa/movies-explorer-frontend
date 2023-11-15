@@ -4,8 +4,8 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-const BASE_URL = HOST_URL;
-// const BASE_URL = SERVER_URL;
+// const BASE_URL = HOST_URL;
+const BASE_URL = SERVER_URL;
 
 const checkResponse = (res) => {
   if (res.ok) {

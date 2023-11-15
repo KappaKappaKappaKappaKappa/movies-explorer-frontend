@@ -169,17 +169,23 @@ function Movies({
         setMaxShortsVisible(MAXMOVIES_S_SIZE);
         setStep(STEP_S_SIZE);
       }
+      console.log(1212);
     };
 
     handleResize();
 
-    const debouncedResize = setTimeout(() => {
-      window.addEventListener("resize", handleResize);
-    }, 700);
+    let timeoutId;
+
+    window.addEventListener("resize", () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        handleResize();
+      }, 100);
+    });
 
     return () => {
-      clearTimeout(debouncedResize);
       window.removeEventListener("resize", handleResize);
+      clearTimeout(timeoutId);
     };
   }, []);
 
