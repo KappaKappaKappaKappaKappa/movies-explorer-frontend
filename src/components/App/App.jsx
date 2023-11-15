@@ -110,22 +110,16 @@ function App() {
     navigate("/");
   };
 
-  // // Эффект получает данные о пользователе с сервера и устанавливает контекст currentUser
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     MainApi.getUserInfo(token)
-  //       .then((data) => {
-  //         setCurrentUser(data);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }, [isLoggedIn, token]);
+  // Эффект перенаправляет пользователя на /movies в случае если он авторизирован и пытает попасть на /signin || /signup
+  useEffect(() => {
+    if (isLoggedIn && (pathname === "/signup" || pathname === "/signin")) {
+      navigate("/movies");
+    }
+  }, [navigate, isLoggedIn, pathname]);
 
   // Эффект для проверки токена при заходе на сайт или обновления страницы
   useEffect(() => {
-    setIsLoading(true);
+
     if (token) {
       setIsLoggedIn(true);
       MainApi.getUserInfo(token)
@@ -136,11 +130,10 @@ function App() {
           console.log(error);
         })
         .finally(() => setIsLoading(false));
-      if (pathname === "/signup" || pathname === "/signin") {
-        navigate("/movies");
-      }
+    } else {
+      setIsLoading(false);
     }
-  }, [isLoggedIn, pathname, navigate, token]);
+  }, [pathname, navigate, token]);
 
   //Проверяем есть ли данные о CurrentUser. Если да - загружаем сохраненные пользователем фильмы
   useEffect(() => {
