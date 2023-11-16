@@ -58,18 +58,17 @@ function Movies({
     }
   }, [setIsNoContent, setIsShorts]);
 
-  const handleSaveFilm = (movie, setIsSavedCard) => {
+  const handleSaveFilm = (movie) => {
     saveMovie(movie, token)
       .then((data) => {
         setSavedMovies([data.data, ...savedMovies]);
-        setIsSavedCard(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleDeleteSavedFilm = (movieId, setIsSavedCard) => {
+  const handleDeleteSavedFilm = (movieId) => {
     const deletedMovie = savedMovies.find((savedMovie) => {
       return savedMovie.movieId === movieId;
     });
@@ -82,7 +81,6 @@ function Movies({
             return movie._id !== idDeletedMovie;
           });
         });
-        setIsSavedCard(false);
       })
       .catch((error) => {
         console.log(error);
@@ -169,7 +167,6 @@ function Movies({
         setMaxShortsVisible(MAXMOVIES_S_SIZE);
         setStep(STEP_S_SIZE);
       }
-      console.log(1212);
     };
 
     handleResize();

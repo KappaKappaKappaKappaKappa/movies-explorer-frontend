@@ -18,28 +18,28 @@ import { useFormValidation } from "../../hooks/useFormValidation";
 
 function App() {
   const token = localStorage.getItem("jwt");
-  
+
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
-  
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sideMenuActive, setSideMenuActive] = useState(false);
-  
+
   const [savedMovies, setSavedMovies] = useState([]);
-  
+
   const [isShorts, setIsShorts] = useState(false);
-  
+
   const [isNoContent, setIsNoContent] = useState(false);
-  
+
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
-  
+
   const { pathname } = useLocation();
-  
+
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const { resetForm } = useFormValidation;
-  
+
   const isHeaderVisible =
     pathname === "/" ||
     pathname === "/movies" ||
@@ -104,7 +104,9 @@ function App() {
 
   const handleToggleFilter = () => {
     setIsShorts(!isShorts);
-    localStorage.setItem("is-shorts", JSON.stringify(!isShorts));
+    if (pathname === "/movies") {
+      localStorage.setItem("is-shorts", JSON.stringify(!isShorts));
+    }
   };
 
   // Функция для logout

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function MoviesCard({
@@ -8,26 +7,14 @@ function MoviesCard({
   ...props
 }) {
   const { pathname } = useLocation();
-  const [isSavedCard, setIsSavedCard] = useState(false);
-
-  useEffect(() => {
-    if (
-      savedMovies &&
-      savedMovies.some((film) => {
-        return film.movieId === props.id;
-      })
-    ) {
-      setIsSavedCard(true);
-    } else {
-      setIsSavedCard(false);
-    }
-  }, [savedMovies, props.id]);
 
   const converTime = (minutes) => {
     const hours = Math.floor(minutes / 60);
     const totalMinutes = minutes % 60;
     return `${hours}ч ${totalMinutes}м`;
   };
+
+  const isSavedCard = savedMovies && savedMovies.some((film) => film.movieId === props.id);
 
   const handleClickSaveBtnCard = () => {
     const movieData = {
@@ -43,12 +30,11 @@ function MoviesCard({
       thumbnail: `https://api.nomoreparties.co/${props.image.formats.thumbnail.url}`,
       movieId: props.id,
     };
-    handleSaveFilm(movieData, setIsSavedCard);
+    handleSaveFilm(movieData);
   };
 
   const handleClickRemoveBtnCard = () => {
-    handleDeleteSavedFilm(props.id || props._id, setIsSavedCard);
-    
+    handleDeleteSavedFilm(props.id || props._id);
   };
 
   return (
