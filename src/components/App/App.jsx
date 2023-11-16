@@ -40,8 +40,6 @@ function App() {
   const [isRegisterSuccessful, setIsRegisterSuccessful] = useState(false);
   const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
 
-  const [isSavedMoviesLoaded, setIsSavedMoviesLoaded] = useState(false);
-
   const isHeaderVisible =
     pathname === "/" ||
     pathname === "/movies" ||
@@ -145,12 +143,7 @@ function App() {
 
   //Проверяем есть ли данные о CurrentUser. Если да - загружаем сохраненные пользователем фильмы
   useEffect(() => {
-    if (
-      isLoggedIn &&
-      currentUser.data &&
-      currentUser.data._id &&
-      !isSavedMoviesLoaded
-    ) {
+    if (isLoggedIn && currentUser.data && currentUser.data._id) {
       MainApi.getSavedMovies(token)
         .then((data) => {
           const ownSavedMovies = data.data.filter((movie) => {
@@ -161,9 +154,6 @@ function App() {
         })
         .catch((error) => {
           console.log(error);
-        })
-        .finally(() => {
-          setIsSavedMoviesLoaded(true);
         });
     }
   }, [isLoggedIn, currentUser, token]);
@@ -223,7 +213,6 @@ function App() {
               <ProtectedRoute
                 loggedIn={isLoggedIn}
                 handleLogout={logoutUser}
-                setIsSavedMoviesLoaded={setIsSavedMoviesLoaded}
                 element={Profile}
               />
             }
