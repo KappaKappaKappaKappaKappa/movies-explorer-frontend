@@ -3,7 +3,7 @@ import currentUserContext from "../../contexts/currentUserContext";
 import { updateUserInfo } from "../../utils/MainApi";
 import { EMAIL_REGEX } from "../../utils/contains";
 
-function Profile({ handleLogout }) {
+function Profile({ handleLogout, setIsSavedMoviesLoaded }) {
   const token = localStorage.getItem("jwt");
   //Подключение контекста currentUser в компонент
   const [currentUser, setCurrentUser] = React.useContext(currentUserContext);
@@ -73,6 +73,7 @@ function Profile({ handleLogout }) {
         setIsRedactorMode(false);
         setUpdateSuccess(true);
         setUpdateError(false);
+        setIsSavedMoviesLoaded(true);
       })
       .catch((error) => {
         console.log(error);
