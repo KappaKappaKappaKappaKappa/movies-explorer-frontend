@@ -14,7 +14,6 @@ import currentUserContext from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth.js";
 import * as MainApi from "../../utils/MainApi.js";
 import Preloader from "../Preloader/Preloader.jsx";
-import { useFormValidation } from "../../hooks/useFormValidation";
 
 function App() {
   const token = localStorage.getItem("jwt");
@@ -38,7 +37,8 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const { resetForm } = useFormValidation;
+  const [isRegisterSuccessful, setIsRegisterSuccessful] = useState(false);
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
 
   const isHeaderVisible =
     pathname === "/" ||
@@ -64,8 +64,8 @@ function App() {
           setIsLoggedIn(true);
           navigate("/movies");
           setLoginErrorMessage("");
-          resetForm();
         }
+        setIsLoginSuccessful(true);
       })
       .catch((error) => {
         console.log(error);
@@ -87,8 +87,8 @@ function App() {
         if (res._id) {
           loginUser(email, password);
           setRegisterErrorMessage("");
-          resetForm();
         }
+        setIsRegisterSuccessful(true);
       })
       .catch((error) => {
         console.log(error);
@@ -224,6 +224,7 @@ function App() {
               <Login
                 handleLogin={loginUser}
                 loginErrorMessage={loginErrorMessage}
+                isLoginSuccessful={isLoginSuccessful}
               />
             }
           />
@@ -234,6 +235,7 @@ function App() {
               <Register
                 handleRegister={registerUser}
                 registerErrorMessage={registerErrorMessage}
+                isRegisterSuccessful={isRegisterSuccessful}
               />
             }
           />

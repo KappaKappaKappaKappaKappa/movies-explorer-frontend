@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { useFormValidation } from "../../hooks/useFormValidation";
 
-function Login({ handleLogin, loginErrorMessage }) {
-  const { values, errors, isValid, handleChange } = useFormValidation({});
+function Login({ handleLogin, loginErrorMessage, isLoginSuccessful }) {
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormValidation({});
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     handleLogin(values.email, values.password);
+    if (isLoginSuccessful) {
+      resetForm();
+    }
   };
 
   return (
