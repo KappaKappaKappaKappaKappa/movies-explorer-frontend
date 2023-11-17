@@ -28,8 +28,6 @@ function App() {
 
   const [isShorts, setIsShorts] = useState(false);
 
-  const [isNoContent, setIsNoContent] = useState(false);
-
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
 
@@ -183,8 +181,7 @@ function App() {
                 isShorts={isShorts}
                 setIsShorts={setIsShorts}
                 handleToggleFilter={handleToggleFilter}
-                isNoContent={isNoContent}
-                setIsNoContent={setIsNoContent}
+                isLoading={isLoading}
                 element={Movies}
               />
             }
@@ -200,8 +197,6 @@ function App() {
                 setIsShorts={setIsShorts}
                 setSavedMovies={setSavedMovies}
                 handleToggleFilter={handleToggleFilter}
-                isNoContent={isNoContent}
-                setIsNoContent={setIsNoContent}
                 element={SavedMovies}
               />
             }

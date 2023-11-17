@@ -9,8 +9,6 @@ function SavedMovies({
   isShorts,
   setIsShorts,
   handleToggleFilter,
-  isNoContent,
-  setIsNoContent,
 }) {
   const token = localStorage.getItem("jwt");
   const [savedMoviesForRender, setSavedMoviesForRender] = useState([]);
@@ -20,9 +18,8 @@ function SavedMovies({
 
   useEffect(() => {
     setIsShorts(false);
-    setIsNoContent(false);
-  }, [setIsShorts, setIsNoContent]);
-
+  }, [setIsShorts]);
+  
   useEffect(() => {
     setSavedMoviesForRender(savedMovies);
 
@@ -74,12 +71,6 @@ function SavedMovies({
     });
     setSavedMoviesForRender(filteredSavedFilms);
 
-    if (filteredSavedFilms.length < 1) {
-      setIsNoContent(true);
-    } else {
-      setIsNoContent(false);
-    }
-
     const filteredSavedShorts = originalSavedMovies.filter((short) => {
       return (
         short.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
@@ -101,7 +92,6 @@ function SavedMovies({
         onlyShorts={onlyShortsForRender}
         handleDeleteSavedFilm={handleDeleteSavedFilm}
         isShorts={isShorts}
-        isNoContent={isNoContent}
       />
     </main>
   );

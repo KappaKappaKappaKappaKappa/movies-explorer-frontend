@@ -12,6 +12,10 @@ export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const SERVER_URL = "https://api.mov.explorer.nomoredomainsrocks.ru";
 export const HOST_URL = "http://localhost:3000";
 
+export const ERROR_NO_CONTENT = (
+  <p className="cards-list__not-found-message">Ничего не найдено!</p>
+);
+
 export const STACK = [
   "HTML",
   "CSS",

@@ -20,8 +20,6 @@ function Movies({
   isShorts,
   setIsShorts,
   handleToggleFilter,
-  isNoContent,
-  setIsNoContent,
 }) {
   const token = localStorage.getItem("jwt");
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -33,18 +31,12 @@ function Movies({
   const [maxShortsVisible, setMaxShortsVisible] = useState(0);
   const [step, setStep] = useState(0);
 
+  const [isUserMadeRequest, setIsUserMadeRequest] = useState(false);
+
   useEffect(() => {
     const filteredFilms = localStorage.getItem("filtered-movies");
     if (filteredFilms) {
       setFilteredMovies(JSON.parse(filteredFilms));
-    }
-
-    if (filteredFilms && JSON.parse(filteredFilms).length > 0) {
-      setIsNoContent(false);
-    } else if (!filteredFilms) {
-      setIsNoContent(false);
-    } else {
-      setIsNoContent(true);
     }
 
     const shortsFilms = localStorage.getItem("shorts-films");
@@ -56,7 +48,13 @@ function Movies({
     if (shortsStatus) {
       setIsShorts(JSON.parse(shortsStatus));
     }
-  }, [setIsNoContent, setIsShorts]);
+  }, [setIsShorts]);
+
+  useEffect(() => {
+    if (localStorage.getItem("movies")) {
+      setIsUserMadeRequest(true);
+    }
+  }, []);
 
   const handleSaveFilm = (movie) => {
     saveMovie(movie, token)
@@ -102,12 +100,6 @@ function Movies({
     });
     setOnlyShorts(shortsFilms);
     localStorage.setItem("shorts-films", JSON.stringify(shortsFilms));
-
-    if (filteredFilms.length < 1) {
-      setIsNoContent(true);
-    } else {
-      setIsNoContent(false);
-    }
   };
 
   const handleSubmitSearchForm = (keyword) => {
@@ -129,6 +121,7 @@ function Movies({
       };
       getMovies();
     }
+    setIsUserMadeRequest(true);
   };
 
   useEffect(() => {
@@ -206,7 +199,6 @@ function Movies({
         filteredMovies={filteredMovies}
         onlyShorts={onlyShorts}
         isShorts={isShorts}
-        isNoContent={isNoContent}
         handleSaveFilm={handleSaveFilm}
         handleDeleteSavedFilm={handleDeleteSavedFilm}
         savedMovies={savedMovies}
@@ -214,6 +206,8 @@ function Movies({
         maxShortsVisible={maxShortsVisible}
         handleClickShowMoreMoviesBtn={handleClickShowMoreMoviesBtn}
         handleClickShowMoreShortsBtn={handleClickShowMoreShortsBtn}
+        isUserMadeRequest={isUserMadeRequest}
+        isLoading={isLoading}
       />
     </main>
   );
