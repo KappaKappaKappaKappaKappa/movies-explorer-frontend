@@ -139,31 +139,6 @@ function App() {
     }
   }, [pathname, navigate, token]);
 
-  //Проверяем есть ли данные о CurrentUser. Если да - загружаем сохраненные пользователем фильмы
-  useEffect(() => {
-    const savedMoviesLS = localStorage.getItem("saved-movies");
-    if (
-      isLoggedIn &&
-      currentUser.data &&
-      currentUser.data._id &&
-      !savedMoviesLS
-    ) {
-      MainApi.getSavedMovies(token)
-        .then((data) => {
-          const ownSavedMovies = data.data.filter((movie) => {
-            return movie.owner === currentUser.data._id;
-          });
-          setSavedMovies(ownSavedMovies);
-          localStorage.setItem("saved-movies", JSON.stringify(ownSavedMovies));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setSavedMovies(JSON.parse(savedMoviesLS));
-    }
-  }, [isLoggedIn, token, currentUser.data]);
-
   return isLoading ? (
     <Preloader />
   ) : (

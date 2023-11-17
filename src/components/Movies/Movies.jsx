@@ -73,12 +73,11 @@ function Movies({
     const idDeletedMovie = deletedMovie._id;
 
     deleteMovie(idDeletedMovie, token)
-      .then((res) => {
-        setSavedMovies((state) => {
-          return state.filter((movie) => {
-            return movie._id !== idDeletedMovie;
-          });
+      .then(() => {
+        const newSavedMovies = savedMovies.filter((movie) => {
+          return movie._id !== idDeletedMovie;
         });
+        setSavedMovies(newSavedMovies);
       })
       .catch((error) => {
         console.log(error);

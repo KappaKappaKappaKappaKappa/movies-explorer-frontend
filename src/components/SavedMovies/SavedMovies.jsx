@@ -1,7 +1,10 @@
+import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { useEffect, useState } from "react";
 import { deleteMovie } from "../../utils/MainApi";
+import { getSavedMovies } from "../../utils/MainApi";
+import currentUserContext from "../../contexts/currentUserContext";
 
 function SavedMovies({
   savedMovies,
@@ -10,6 +13,8 @@ function SavedMovies({
   setIsShorts,
   handleToggleFilter,
 }) {
+  const [currentUser] = React.useContext(currentUserContext);
+
   const token = localStorage.getItem("jwt");
   const [savedMoviesForRender, setSavedMoviesForRender] = useState([]);
   const [onlyShortsForRender, setOnlyShortsForRender] = useState([]);
@@ -19,27 +24,36 @@ function SavedMovies({
   useEffect(() => {
     setIsShorts(false);
   }, [setIsShorts]);
-  
+
   useEffect(() => {
-    setSavedMoviesForRender(savedMovies);
+    getSavedMovies(token)
+      .then((data) => {
+        const ownSavedMovies = data.data.filter((movie) => {
+          return movie.owner === currentUser.data._id;
+        });
+        setSavedMovies(ownSavedMovies);
+        setSavedMoviesForRender(ownSavedMovies);
 
-    setOriginalSavedMovies(savedMovies);
+        setOriginalSavedMovies(ownSavedMovies);
 
-    setOnlyShortsForRender(
-      savedMovies.filter((movie) => {
-        return movie.duration < 40;
+        setOnlyShortsForRender(
+          ownSavedMovies.filter((movie) => {
+            return movie.duration < 40;
+          })
+        );
       })
-    );
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const handleDeleteSavedFilm = (movieId) => {
     deleteMovie(movieId, token)
-      .then((res) => {
-        setSavedMovies((state) => {
-          return state.filter((m) => {
-            return m._id !== movieId;
-          });
+      .then(() => {
+        const newSavedMovies = savedMovies.filter((movie) => {
+          return movie._id !== movieId;
         });
+        setSavedMovies(newSavedMovies);
 
         setSavedMoviesForRender((state) => {
           return state.filter((m) => {
