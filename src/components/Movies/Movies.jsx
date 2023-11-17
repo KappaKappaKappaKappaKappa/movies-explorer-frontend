@@ -162,20 +162,22 @@ function Movies({
       }
     };
 
-    handleResize();
-
     let timeoutId;
 
-    window.addEventListener("resize", () => {
+    const handleResizeWithDelay = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         handleResize();
-      }, 100);
-    });
+      }, 50);
+    };
+
+    handleResizeWithDelay();
+
+    window.addEventListener("resize", handleResizeWithDelay);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
       clearTimeout(timeoutId);
+      window.removeEventListener("resize", handleResizeWithDelay);
     };
   }, []);
 
