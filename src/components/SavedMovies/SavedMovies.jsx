@@ -21,6 +21,8 @@ function SavedMovies({
 
   const [originalSavedMovies, setOriginalSavedMovies] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setIsShorts(false);
   }, [setIsShorts]);
@@ -28,6 +30,7 @@ function SavedMovies({
   useEffect(() => {
     getSavedMovies(token)
       .then((data) => {
+        setIsLoading(true);
         const ownSavedMovies = data.data.filter((movie) => {
           return movie.owner === currentUser.data._id;
         });
@@ -44,6 +47,9 @@ function SavedMovies({
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -106,6 +112,7 @@ function SavedMovies({
         onlyShorts={onlyShortsForRender}
         handleDeleteSavedFilm={handleDeleteSavedFilm}
         isShorts={isShorts}
+        isLoading={isLoading}
       />
     </main>
   );

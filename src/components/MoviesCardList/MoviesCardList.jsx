@@ -1,6 +1,7 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { useLocation } from "react-router-dom";
 import { ERROR_NO_CONTENT } from "../../utils/contains";
+import Preloader from "../Preloader/Preloader.jsx";
 
 function MoviesCardList({
   filteredMovies,
@@ -24,8 +25,7 @@ function MoviesCardList({
       pathname === "/movies" &&
       isUserMadeRequest &&
       !filteredMovies?.length &&
-      !isShorts &&
-      !isLoading
+      !isShorts
     ) {
       return ERROR_NO_CONTENT;
     }
@@ -34,8 +34,7 @@ function MoviesCardList({
       pathname === "/movies" &&
       isUserMadeRequest &&
       !onlyShorts?.length &&
-      isShorts &&
-      !isLoading
+      isShorts
     ) {
       return ERROR_NO_CONTENT;
     }
@@ -52,7 +51,7 @@ function MoviesCardList({
   return (
     <section className="cards-list">
       <div className="cards-list__container">
-        {!isLoading && checkResult()}
+        {!isLoading ? checkResult() : <Preloader />}
         {(isShorts ? onlyShorts : filteredMovies)
           .slice(0, isShorts ? maxShortsVisible : maxMoviesVisible)
           .map((movie) => {
