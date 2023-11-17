@@ -141,7 +141,13 @@ function App() {
 
   //Проверяем есть ли данные о CurrentUser. Если да - загружаем сохраненные пользователем фильмы
   useEffect(() => {
-    if (isLoggedIn && currentUser.data && currentUser.data._id) {
+    const savedMoviesLS = localStorage.getItem("saved-movies");
+    if (
+      isLoggedIn &&
+      currentUser.data &&
+      currentUser.data._id &&
+      !savedMoviesLS
+    ) {
       MainApi.getSavedMovies(token)
         .then((data) => {
           const ownSavedMovies = data.data.filter((movie) => {
@@ -153,8 +159,10 @@ function App() {
         .catch((error) => {
           console.log(error);
         });
+    } else {
+      setSavedMovies(JSON.parse(savedMoviesLS));
     }
-  }, [isLoggedIn, currentUser, token]);
+  }, [isLoggedIn, token, currentUser.data]);
 
   return isLoading ? (
     <Preloader />
